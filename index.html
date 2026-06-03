@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🍗 치킨의 민족</title>
+  <style>
+    :root {
+      --primary: #FF6B00;
+      --primary-dark: #E05A00;
+      --secondary: #FFF3E0;
+      --accent: #FFD700;
+      --text-dark: #1a1a1a;
+      --text-mid: #555;
+      --radius: 16px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      background: #FFF8F0;
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, #FF6B00, #FF9A00);
+      color: white;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 12px rgba(255,107,0,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-logo span { font-size: 36px; }
+    .header-cart-btn {
+      background: white;
+      color: var(--primary);
+      border: none;
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s;
+    }
+    .header-cart-btn:active { transform: scale(0.96); }
+    .cart-count {
+      background: #FF3B30;
+      color: white;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== HERO BANNER ===== */
+    .hero {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      padding: 28px 24px;
+      text-align: center;
+      border-bottom: 3px solid #FFD700;
+    }
+    .hero h2 {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--primary-dark);
+      line-height: 1.3;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-mid);
+      margin-top: 8px;
+    }
+
+    /* ===== CATEGORY TABS ===== */
+    .category-tabs {
+      display: flex;
+      gap: 10px;
+      padding: 20px 24px 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .category-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex-shrink: 0;
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    /* ===== MENU GRID ===== */
+    .menu-section { padding: 16px 24px 120px; }
+    .section-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      padding-left: 4px;
+      border-left: 5px solid var(--primary);
+      padding-left: 12px;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .menu-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
+    .menu-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #FFE0B2, #FFCC80);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+    .menu-card-body { padding: 16px; }
+    .menu-card-name {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .menu-card-desc {
+      font-size: 15px;
+      color: var(--text-mid);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .menu-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .menu-price {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--primary);
+    }
+    .add-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .add-btn:hover { background: var(--primary-dark); }
+    .add-btn:active { transform: scale(0.95); }
+    .badge-new {
+      background: #FF3B30;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .badge-best {
+      background: #FFD700;
+      color: #333;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ===== CART MODAL ===== */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 200;
+      display: none;
+      align-items: flex-end;
+    }
+    .overlay.show { display: flex; }
+    .modal {
+      background: white;
+      border-radius: 24px 24px 0 0;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px 24px 40px;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .modal-title { font-size: 26px; font-weight: 900; }
+    .close-btn {
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== CART ITEMS ===== */
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item-emoji { font-size: 44px; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: 20px; font-weight: 700; }
+    .cart-item-price { font-size: 18px; color: var(--primary); font-weight: 600; }
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .qty-btn {
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 22px;
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qty-btn:hover { background: #ddd; }
+    .qty-num { font-size: 20px; font-weight: 800; min-width: 28px; text-align: center; }
+
+    /* ===== TOTAL & ORDER BTN ===== */
+    .cart-total {
+      margin-top: 20px;
+      padding: 16px;
+      background: #FFF3E0;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-total-label { font-size: 20px; font-weight: 700; }
+    .cart-total-price { font-size: 28px; font-weight: 900; color: var(--primary); }
+    .order-btn {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: 900;
+      margin-top: 16px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .order-btn:hover { background: var(--primary-dark); }
+    .order-btn:active { transform: scale(0.98); }
+    .empty-cart {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 20px;
+      color: #aaa;
+    }
+
+    /* ===== PAYMENT MODAL ===== */
+    #paymentModal .modal {
+      max-height: 92vh;
+    }
+    .pay-methods {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .pay-method-btn {
+      border: 3px solid #ddd;
+      border-radius: 14px;
+      padding: 18px 10px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      background: white;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .pay-method-btn span { font-size: 36px; }
+    .pay-method-btn.selected {
+      border-color: var(--primary);
+      background: #FFF3E0;
+      color: var(--primary);
+    }
+    .kakao-btn { border-color: #FEE500; background: #FEE500; }
+    .kakao-btn.selected { border-color: #E6CF00; background: #FFF0A0; }
+
+    /* ===== CAMERA SCAN ===== */
+    #cameraSection {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin: 16px 0;
+    }
+    #cameraSection.show { display: flex; }
+    .camera-frame {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      border: 4px solid var(--primary);
+      background: #000;
+    }
+    #videoEl {
+      width: 100%;
+      display: block;
+    }
+    .camera-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .scan-line {
+      width: 80%;
+      height: 3px;
+      background: rgba(255, 107, 0, 0.8);
+      box-shadow: 0 0 12px rgba(255,107,0,0.9);
+      animation: scan 2s linear infinite;
+      border-radius: 2px;
+    }
+    @keyframes scan {
+      0% { transform: translateY(-60px); }
+      50% { transform: translateY(60px); }
+      100% { transform: translateY(-60px); }
+    }
+    .card-guide {
+      border: 3px dashed rgba(255,255,255,0.7);
+      width: 75%;
+      height: 48%;
+      border-radius: 12px;
+      position: absolute;
+    }
+    .camera-hint {
+      font-size: 17px;
+      color: var(--text-mid);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .scan-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 36px;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ===== KAKAO PAY ===== */
+    #kakaoSection {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    #kakaoSection.show { display: flex; }
+    .kakao-qr {
+      width: 200px;
+      height: 200px;
+      background: #FEE500;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      box-shadow: var(--shadow);
+    }
+    .kakao-info {
+      font-size: 18px;
+      text-align: center;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .kakao-pay-btn {
+      background: #FEE500;
+      color: #333;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 40px;
+      font-size: 22px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    /* ===== SUCCESS SCREEN ===== */
+    #successModal .modal {
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .success-icon { font-size: 80px; animation: pop 0.5s ease; }
+    @keyframes pop {
+      0% { transform: scale(0); }
+      70% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .success-title {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 16px 0 8px;
+    }
+    .success-subtitle {
+      font-size: 20px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .order-number {
+      background: #FFF3E0;
+      border: 2px dashed var(--primary);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+      font-size: 20px;
+    }
+    .order-number strong {
+      font-size: 36px;
+      color: var(--primary);
+      display: block;
+      font-weight: 900;
+    }
+    .order-items-summary {
+      text-align: left;
+      border-top: 2px solid #eee;
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+    .order-items-summary h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .order-item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .close-success-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 18px 40px;
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      border-radius: 50px;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: 600;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ===== PROCESSING ===== */
+    .processing-box {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 30px 0;
+    }
+    .processing-box.show { display: flex; }
+    .spinner {
+      width: 64px;
+      height: 64px;
+      border: 6px solid #eee;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .processing-text { font-size: 20px; font-weight: 600; color: var(--text-mid); }
+
+    @media (max-width: 500px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .pay-methods { grid-template-columns: 1fr 1fr; }
+      .header-logo { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-logo">
+    <span>🍗</span>
+    치킨의 민족
+  </div>
+  <button class="header-cart-btn" onclick="openCart()">
+    🛒 장바구니
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</header>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <h2>🔥 할아버지표 황금 치킨 🔥</h2>
+  <p>바삭하고 맛있는 치킨을 지금 바로 주문하세요!</p>
+</div>
+
+<!-- ===== CATEGORY TABS ===== -->
+<div class="category-tabs">
+  <button class="tab-btn active" onclick="filterMenu('all', this)">전체</button>
+  <button class="tab-btn" onclick="filterMenu('chicken', this)">🍗 치킨</button>
+  <button class="tab-btn" onclick="filterMenu('side', this)">🍟 사이드</button>
+  <button class="tab-btn" onclick="filterMenu('drink', this)">🥤 음료</button>
+  <button class="tab-btn" onclick="filterMenu('set', this)">🎁 세트</button>
+</div>
+
+<!-- ===== MENU ===== -->
+<div class="menu-section">
+  <div class="section-title">🍗 오늘의 메뉴</div>
+  <div class="menu-grid" id="menuGrid"></div>
+</div>
+
+<!-- ===== CART MODAL ===== -->
+<div class="overlay" id="cartOverlay" onclick="closeCart(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🛒 장바구니</div>
+      <button class="close-btn" onclick="closeOverlay('cartOverlay')">✕</button>
+    </div>
+    <div id="cartItems"></div>
+    <div id="cartTotal" style="display:none">
+      <div class="cart-total">
+        <span class="cart-total-label">총 금액</span>
+        <span class="cart-total-price" id="totalPrice">0원</span>
+      </div>
+      <button class="order-btn" onclick="openPayment()">💳 결제하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAYMENT MODAL ===== -->
+<div class="overlay" id="paymentOverlay" onclick="closeCart(event)">
+  <div class="modal" id="paymentModal">
+    <div class="modal-header">
+      <div class="modal-title">💳 결제 방법 선택</div>
+      <button class="close-btn" onclick="closeOverlay('paymentOverlay')">✕</button>
+    </div>
+
+    <div class="pay-methods">
+      <button class="pay-method-btn" id="btnCard" onclick="selectPay('card')">
+        <span>💳</span>
+        카드 결제<br><small style="font-weight:400;font-size:13px;">카메라 스캔</small>
+      </button>
+      <button class="pay-method-btn kakao-btn" id="btnKakao" onclick="selectPay('kakao')">
+        <span>💛</span>
+        카카오페이
+      </button>
+      <button class="pay-method-btn" id="btnCash" onclick="selectPay('cash')">
+        <span>💵</span>
+        현금 결제
+      </button>
+      <button class="pay-method-btn" id="btnTransfer" onclick="selectPay('transfer')">
+        <span>🏦</span>
+        계좌이체
+      </button>
+    </div>
+
+    <!-- Camera Section -->
+    <div id="cameraSection">
+      <div class="camera-frame">
+        <video id="videoEl" autoplay playsinline muted></video>
+        <div class="camera-overlay">
+          <div class="card-guide"></div>
+          <div class="scan-line"></div>
+        </div>
+      </div>
+      <p class="camera-hint">📸 카드를 네모 안에 넣어주세요<br>카메라로 카드를 스캔합니다</p>
+      <button class="scan-btn" onclick="simulateScan()">📷 카드 스캔하기</button>
+    </div>
+
+    <!-- KakaoPay Section -->
+    <div id="kakaoSection">
+      <div class="kakao-qr">💛</div>
+      <p class="kakao-info">📱 카카오톡 앱을 열고<br>QR 코드를 스캔해 주세요</p>
+      <button class="kakao-pay-btn" onclick="simulateKakaoPay()">카카오페이로 결제</button>
+    </div>
+
+    <!-- Cash Section -->
+    <div id="cashSection" style="display:none; text-align:center; padding:20px 0;">
+      <div style="font-size:64px;">💵</div>
+      <p style="font-size:20px; margin:12px 0; font-weight:600;">현금으로 결제합니다</p>
+      <p style="font-size:18px; color:#888;">점원에게 현금을 전달해 주세요</p>
+      <button class="scan-btn" style="margin-top:16px; width:100%; font-size:22px; padding:18px;" onclick="confirmPayment()">결제 완료</button>
+    </div>
+
+    <!-- Transfer Section -->
+    <div id="transferSection" style="display:none; text-align:center; padding:20px 0;">
+      <div style="font-size:64px;">🏦</div>
+      <div style="background:#f5f5f5; border-radius:12px; padding:16px; margin:12px 0; font-size:18px; line-height:2;">
+        <strong>입금 계좌</strong><br>
+        국민은행 123-456-7890<br>
+        예금주: 할아버지치킨
+      </div>
+      <button class="scan-btn" style="width:100%; font-size:22px; padding:18px;" onclick="confirmPayment()">입금 완료</button>
+    </div>
+
+    <!-- Processing -->
+    <div class="processing-box" id="processingBox">
+      <div class="spinner"></div>
+      <div class="processing-text" id="processingText">결제 처리 중...</div>
+    </div>
+
+    <div style="margin-top:12px; background:#FFF3E0; border-radius:10px; padding:14px; font-size:16px; color:#888; text-align:center;">
+      총 결제 금액: <strong style="font-size:20px; color:var(--primary)" id="payTotalLabel">0원</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SUCCESS MODAL ===== -->
+<div class="overlay" id="successOverlay">
+  <div class="modal" id="successModal">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">치킨의 민족 주문!</div>
+    <div class="success-subtitle">주문이 성공적으로 접수되었습니다 🍗</div>
+    <div class="order-number">
+      주문 번호
+      <strong id="orderNumber">#0000</strong>
+    </div>
+    <div class="order-items-summary">
+      <h4>📋 주문 내역</h4>
+      <div id="orderSummaryItems"></div>
+      <div class="order-item-row" style="font-weight:800; font-size:20px; margin-top:8px;">
+        <span>총 금액</span>
+        <span id="orderSummaryTotal" style="color:var(--primary)"></span>
+      </div>
+    </div>
+    <p style="font-size:17px; color:#888; margin-top:12px; line-height:1.6;">
+      ⏰ 예상 조리 시간: <strong style="color:#333;">20~30분</strong><br>
+      감사합니다! 맛있게 드세요 😊
+    </p>
+    <button class="close-success-btn" onclick="closeSuccess()">홈으로 돌아가기 🏠</button>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== MENU DATA =====
+const menuData = [
+  { id:1, name:'황금 후라이드', emoji:'🍗', price:17000, desc:'바삭한 황금빛 튀김옷, 할아버지 비법 양념', cat:'chicken', badge:'best' },
+  { id:2, name:'양념치킨', emoji:'🍖', price:18000, desc:'달콤 매콤한 특제 양념소스', cat:'chicken', badge:'best' },
+  { id:3, name:'반반치킨', emoji:'🍗', price:19000, desc:'후라이드 반 + 양념 반, 취향껏 즐기세요', cat:'chicken', badge:'' },
+  { id:4, name:'마늘간장치킨', emoji:'🧄', price:20000, desc:'고소한 마늘과 깊은 간장의 조화', cat:'chicken', badge:'new' },
+  { id:5, name:'불닭치킨', emoji:'🌶️', price:21000, desc:'매운맛 좋아하는 분들께 강추!', cat:'chicken', badge:'new' },
+  { id:6, name:'순살치킨', emoji:'🍗', price:22000, desc:'뼈 없이 편하게 즐기는 순살 치킨', cat:'chicken', badge:'' },
+  { id:7, name:'감자튀김', emoji:'🍟', price:4000, desc:'바삭하고 노릇한 황금 감자튀김', cat:'side', badge:'' },
+  { id:8, name:'코울슬로', emoji:'🥗', price:3000, desc:'신선한 야채 코울슬로', cat:'side', badge:'' },
+  { id:9, name:'떡볶이', emoji:'🍢', price:5000, desc:'매콤달콤 치킨과 찰떡궁합', cat:'side', badge:'best' },
+  { id:10, name:'콜라 1.25L', emoji:'🥤', price:3000, desc:'시원한 콜라 한 병', cat:'drink', badge:'' },
+  { id:11, name:'사이다 1.25L', emoji:'🥤', price:3000, desc:'청량한 사이다 한 병', cat:'drink', badge:'' },
+  { id:12, name:'치킨세트 A', emoji:'🎁', price:24000, desc:'후라이드 + 감자튀김 + 콜라', cat:'set', badge:'best' },
+  { id:13, name:'치킨세트 B', emoji:'🎁', price:26000, desc:'양념치킨 + 떡볶이 + 사이다', cat:'set', badge:'' },
+];
+
+let cart = {};
+let currentCategory = 'all';
+let stream = null;
+
+function renderMenu(filter='all') {
+  const grid = document.getElementById('menuGrid');
+  const filtered = filter === 'all' ? menuData : menuData.filter(m => m.cat === filter);
+  grid.innerHTML = filtered.map(item => `
+    <div class="menu-card" onclick="addToCart(${item.id})">
+      <div class="menu-card-img">${item.emoji}</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">
+          ${item.name}
+          ${item.badge === 'best' ? '<span class="badge-best">⭐BEST</span>' : ''}
+          ${item.badge === 'new' ? '<span class="badge-new">NEW</span>' : ''}
+        </div>
+        <div class="menu-card-desc">${item.desc}</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">${item.price.toLocaleString()}원</span>
+          <button class="add-btn" onclick="event.stopPropagation(); addToCart(${item.id})">+ 담기</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterMenu(cat, el) {
+  currentCategory = cat;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderMenu(cat);
+}
+
+function addToCart(id) {
+  const item = menuData.find(m => m.id === id);
+  if (!item) return;
+  if (!cart[id]) cart[id] = { ...item, qty: 0 };
+  cart[id].qty++;
+  updateCartCount();
+  playAddSound();
+  showToast(`🍗 ${item.name} 담았어요!`);
+}
+
+function updateCartCount() {
+  const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = total;
+}
+
+function openCart() {
+  renderCart();
+  document.getElementById('cartOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderCart() {
+  const items = Object.values(cart);
+  const container = document.getElementById('cartItems');
+  const totalEl = document.getElementById('cartTotal');
+
+  if (items.length === 0) {
+    container.innerHTML = `<div class="empty-cart">🧺 장바구니가 비어있어요<br><br>맛있는 치킨을 담아보세요!</div>`;
+    totalEl.style.display = 'none';
+    return;
+  }
+
+  container.innerHTML = items.map(i => `
+    <div class="cart-item">
+      <div class="cart-item-emoji">${i.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${i.name}</div>
+        <div class="cart-item-price">${(i.price * i.qty).toLocaleString()}원</div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty(${i.id}, -1)">−</button>
+        <span class="qty-num">${i.qty}</span>
+        <button class="qty-btn" onclick="changeQty(${i.id}, 1)">+</button>
+      </div>
+    </div>
+  `).join('');
+
+  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('totalPrice').textContent = total.toLocaleString() + '원';
+  totalEl.style.display = 'block';
+  document.getElementById('payTotalLabel').textContent = total.toLocaleString() + '원';
+}
+
+function changeQty(id, delta) {
+  if (!cart[id]) return;
+  cart[id].qty += delta;
+  if (cart[id].qty <= 0) delete cart[id];
+  updateCartCount();
+  renderCart();
+}
+
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('show');
+  document.body.style.overflow = '';
+  if (id === 'paymentOverlay') stopCamera();
+}
+
+function closeCart(e) {
+  if (e.target === e.currentTarget) {
+    e.currentTarget.classList.remove('show');
+    document.body.style.overflow = '';
+    stopCamera();
+  }
+}
+
+// ===== PAYMENT =====
+function openPayment() {
+  closeOverlay('cartOverlay');
+  const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('payTotalLabel').textContent = total.toLocaleString() + '원';
+  resetPaymentSections();
+  document.getElementById('paymentOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function resetPaymentSections() {
+  ['cameraSection','kakaoSection','cashSection','transferSection','processingBox'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.display = '';
+    el.classList.remove('show');
+  });
+  document.querySelectorAll('.pay-method-btn').forEach(b => b.classList.remove('selected'));
+}
+
+function selectPay(method) {
+  resetPaymentSections();
+  stopCamera();
+
+  document.querySelectorAll('.pay-method-btn').forEach(b => b.classList.remove('selected'));
+  const btnMap = { card: 'btnCard', kakao: 'btnKakao', cash: 'btnCash', transfer: 'btnTransfer' };
+  document.getElementById(btnMap[method]).classList.add('selected');
+
+  if (method === 'card') startCamera();
+  else if (method === 'kakao') { document.getElementById('kakaoSection').style.display = 'flex'; document.getElementById('kakaoSection').classList.add('show'); }
+  else if (method === 'cash') document.getElementById('cashSection').style.display = 'block';
+  else if (method === 'transfer') document.getElementById('transferSection').style.display = 'block';
+}
+
+// ===== CAMERA =====
+async function startCamera() {
+  const section = document.getElementById('cameraSection');
+  section.style.display = 'flex';
+  section.classList.add('show');
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+    document.getElementById('videoEl').srcObject = stream;
+  } catch(e) {
+    showToast('📷 카메라 권한이 필요합니다');
+    document.getElementById('cameraSection').innerHTML = `
+      <div style="text-align:center; padding:20px;">
+        <div style="font-size:60px;">📷</div>
+        <p style="font-size:18px; margin:12px 0;">카메라를 사용할 수 없습니다<br>다른 결제 방법을 이용해주세요</p>
+        <button class="scan-btn" onclick="confirmPayment()">카드 번호 직접 입력</button>
+      </div>
+    `;
+  }
+}
+
+function stopCamera() {
+  if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+}
+
+function simulateScan() {
+  showToast('🔍 카드 인식 중...');
+  document.getElementById('processingBox').style.display = 'flex';
+  document.getElementById('processingBox').classList.add('show');
+  document.getElementById('processingText').textContent = '카드 정보 인식 중...';
+  stopCamera();
+  setTimeout(() => {
+    document.getElementById('processingText').textContent = '결제 처리 중...';
+    setTimeout(() => confirmPayment(), 1500);
+  }, 1500);
+}
+
+function simulateKakaoPay() {
+  document.getElementById('kakaoSection').style.display = 'none';
+  document.getElementById('processingBox').style.display = 'flex';
+  document.getElementById('processingBox').classList.add('show');
+  document.getElementById('processingText').textContent = '카카오페이 결제 처리 중...';
+  setTimeout(() => confirmPayment(), 2000);
+}
+
+function confirmPayment() {
+  document.getElementById('processingBox').style.display = 'flex';
+  document.getElementById('processingBox').classList.add('show');
+  document.getElementById('processingText').textContent = '결제 완료 처리 중...';
+  setTimeout(() => showSuccess(), 1500);
+}
+
+// ===== SUCCESS =====
+function showSuccess() {
+  stopCamera();
+  closeOverlay('paymentOverlay');
+
+  const orderNum = '#' + String(Math.floor(1000 + Math.random() * 9000));
+  document.getElementById('orderNumber').textContent = orderNum;
+
+  const items = Object.values(cart);
+  document.getElementById('orderSummaryItems').innerHTML = items.map(i => `
+    <div class="order-item-row">
+      <span>${i.emoji} ${i.name} × ${i.qty}</span>
+      <span>${(i.price * i.qty).toLocaleString()}원</span>
+    </div>
+  `).join('');
+
+  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('orderSummaryTotal').textContent = total.toLocaleString() + '원';
+
+  document.getElementById('successOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+
+  playOrderSound();
+}
+
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+  cart = {};
+  updateCartCount();
+}
+
+// ===== SOUND EFFECTS =====
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx;
+
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new AudioCtx();
+  return audioCtx;
+}
+
+function playAddSound() {
+  try {
+    const ctx = getAudioCtx();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.setValueAtTime(800, ctx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+    g.gain.setValueAtTime(0.3, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+    o.start(); o.stop(ctx.currentTime + 0.2);
+  } catch(e) {}
+}
+
+function playOrderSound() {
+  try {
+    const ctx = getAudioCtx();
+    // 치킨의 민족 주문! - 팡파레 멜로디
+    const melody = [
+      [523, 0, 0.15],   // C
+      [659, 0.15, 0.15],// E
+      [784, 0.3, 0.15], // G
+      [1047, 0.45, 0.3],// C high
+      [880, 0.75, 0.15],// A
+      [1047, 0.9, 0.4], // C high long
+    ];
+    melody.forEach(([freq, start, dur]) => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.type = 'square';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0, ctx.currentTime + start);
+      g.gain.linearRampToValueAtTime(0.25, ctx.currentTime + start + 0.02);
+      g.gain.setValueAtTime(0.25, ctx.currentTime + start + dur - 0.05);
+      g.gain.linearRampToValueAtTime(0, ctx.currentTime + start + dur);
+      o.start(ctx.currentTime + start);
+      o.stop(ctx.currentTime + start + dur + 0.05);
+    });
+
+    // 드럼 비트
+    for (let i = 0; i < 4; i++) {
+      const buf = ctx.createBuffer(1, ctx.sampleRate * 0.1, ctx.sampleRate);
+      const data = buf.getChannelData(0);
+      for (let j = 0; j < data.length; j++) data[j] = (Math.random() * 2 - 1) * Math.exp(-j / (ctx.sampleRate * 0.02));
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      const g = ctx.createGain();
+      g.gain.value = 0.3;
+      src.connect(g); g.connect(ctx.destination);
+      src.start(ctx.currentTime + i * 0.33);
+    }
+  } catch(e) {}
+}
+
+// ===== TOAST =====
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+// ===== INIT =====
+renderMenu();
+</script>
+</body>
+</html>
