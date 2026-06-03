@@ -25,7 +25,7 @@
 <div class="mobile-frame w-full bg-white flex flex-col relative pb-16 min-h-screen overflow-x-hidden">
 
   <!-- ===== HEADER ===== -->
-  <header class="sticky top-0 z-50 bg-[#FF6B00] text-white p-4 flex justify-between items-center shadow-md">
+  <header class="sticky top-0 z-50 bg-[#2AC1BC] text-white p-4 flex justify-between items-center shadow-md">
     <div class="flex items-center gap-2 cursor-pointer" onclick="changeTab('home')">
       <i class="fa-solid fa-drumstick-bite text-2xl"></i>
       <h1 class="text-xl font-black tracking-tight">치킨의 민족</h1>
@@ -49,15 +49,15 @@
     <!-- ======================================== -->
     <div id="tab-home" class="tab-content active">
       <!-- 히어로 배너 -->
-      <div class="bg-gradient-to-b from-[#FF6B00] to-[#ff8c00] text-white px-5 pb-6 pt-2 rounded-b-2xl shadow-inner">
+      <div class="bg-gradient-to-b from-[#2AC1BC] to-[#25a9a4] text-white px-5 pb-6 pt-2 rounded-b-2xl shadow-inner">
         <p class="text-xs opacity-90 mb-1">매일 직접 튀기는 바삭한 정통 치킨</p>
         <h2 class="text-2xl font-bold leading-tight">할아버지의 황금 레시피,<br>오늘도 바삭하게 튀겨드립니다 🍗</h2>
         <div class="bg-white text-gray-800 rounded-xl p-3 mt-4 flex items-center justify-between shadow-md">
           <div class="flex items-center gap-2">
-            <span class="bg-orange-100 text-orange-600 text-xs font-bold px-2 py-0.5 rounded-full">오늘 추천</span>
+            <span class="bg-teal-100 text-teal-600 text-xs font-bold px-2 py-0.5 rounded-full">오늘 추천</span>
             <span class="text-xs text-gray-500">지금 바로 주문 가능!</span>
           </div>
-          <button onclick="changeTab('menu')" class="text-[#FF6B00] text-xs font-bold flex items-center gap-1">
+          <button onclick="changeTab('menu')" class="text-[#2AC1BC] text-xs font-bold flex items-center gap-1">
             메뉴보기 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
         </div>
@@ -68,14 +68,14 @@
         <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
           <div class="flex justify-between items-center mb-3">
             <h3 class="font-bold text-gray-800 text-base flex items-center gap-1">
-              <i class="fa-solid fa-fire text-orange-500"></i> 오늘의 베스트 메뉴
+              <i class="fa-solid fa-fire text-teal-500"></i> 오늘의 베스트 메뉴
             </h3>
             <span class="text-xs text-green-600 font-medium"><i class="fa-solid fa-circle-check"></i> 바로 주문 가능</span>
           </div>
           <div class="grid grid-cols-3 gap-2">
-            <div class="bg-orange-50 p-3 rounded-lg text-center border border-orange-100 cursor-pointer" onclick="goToMenuItem(1)">
+            <div class="bg-teal-50 p-3 rounded-lg text-center border border-teal-100 cursor-pointer" onclick="goToMenuItem(1)">
               <span class="text-2xl block">🍗</span>
-              <span class="text-xs text-orange-800 font-semibold block mt-1">황금 후라이드</span>
+              <span class="text-xs text-teal-800 font-semibold block mt-1">황금 후라이드</span>
               <span class="text-sm font-bold text-gray-900 block mt-1">17,000원</span>
             </div>
             <div class="bg-red-50 p-3 rounded-lg text-center border border-red-100 cursor-pointer" onclick="goToMenuItem(2)">
@@ -97,25 +97,25 @@
         <h3 class="font-bold text-gray-800 text-lg mb-3">카테고리</h3>
         <div class="grid grid-cols-4 gap-3 text-center">
           <div onclick="goCategory('chicken')" class="cursor-pointer">
-            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-orange-300">
+            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-teal-300">
               <span class="text-2xl">🍗</span>
             </div>
             <span class="text-xs font-medium text-gray-700 mt-2 block">치킨</span>
           </div>
           <div onclick="goCategory('side')" class="cursor-pointer">
-            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-orange-300">
+            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-teal-300">
               <span class="text-2xl">🍟</span>
             </div>
             <span class="text-xs font-medium text-gray-700 mt-2 block">사이드</span>
           </div>
           <div onclick="goCategory('drink')" class="cursor-pointer">
-            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-orange-300">
+            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-teal-300">
               <span class="text-2xl">🥤</span>
             </div>
             <span class="text-xs font-medium text-gray-700 mt-2 block">음료</span>
           </div>
           <div onclick="goCategory('set')" class="cursor-pointer">
-            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-orange-300">
+            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-teal-300">
               <span class="text-2xl">🎁</span>
             </div>
             <span class="text-xs font-medium text-gray-700 mt-2 block">세트</span>
@@ -135,11 +135,11 @@
       </div>
 
       <!-- 할아버지 약속 -->
-      <div class="m-4 p-4 rounded-xl bg-orange-50 border border-orange-100 flex gap-3 items-start">
+      <div class="m-4 p-4 rounded-xl bg-teal-50 border border-teal-100 flex gap-3 items-start">
         <span class="text-2xl">👴</span>
         <div>
-          <h4 class="font-bold text-orange-800 text-sm">할아버지의 약속</h4>
-          <p class="text-xs text-orange-900 mt-1 leading-relaxed">
+          <h4 class="font-bold text-teal-800 text-sm">할아버지의 약속</h4>
+          <p class="text-xs text-teal-900 mt-1 leading-relaxed">
             "40년 비법 레시피로 매일 직접 튀깁니다. 신선한 국내산 닭고기만 사용하며, 단 한 번도 냉동육을 쓴 적이 없습니다."
           </p>
         </div>
@@ -157,7 +157,7 @@
 
       <!-- 카테고리 필터 -->
       <div class="bg-white sticky top-[60px] z-40 border-b border-gray-100 flex gap-2 p-3 overflow-x-auto no-scrollbar shadow-sm">
-        <button id="btn-cat-all" onclick="filterCategory('all')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-[#FF6B00] text-white">전체</button>
+        <button id="btn-cat-all" onclick="filterCategory('all')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-[#2AC1BC] text-white">전체</button>
         <button id="btn-cat-chicken" onclick="filterCategory('chicken')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600">🍗 치킨</button>
         <button id="btn-cat-side" onclick="filterCategory('side')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600">🍟 사이드</button>
         <button id="btn-cat-drink" onclick="filterCategory('drink')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600">🥤 음료</button>
@@ -181,7 +181,7 @@
         <div class="text-5xl mb-4">🛒</div>
         <p class="text-gray-500 font-bold text-sm">장바구니가 비어있습니다.</p>
         <p class="text-gray-400 text-xs mt-1">맛있는 치킨을 장바구니에 담아보세요!</p>
-        <button onclick="changeTab('menu')" class="bg-[#FF6B00] text-white px-6 py-2.5 rounded-xl font-bold text-sm mt-5 shadow-sm">
+        <button onclick="changeTab('menu')" class="bg-[#2AC1BC] text-white px-6 py-2.5 rounded-xl font-bold text-sm mt-5 shadow-sm">
           메뉴 보러 가기
         </button>
       </div>
@@ -204,15 +204,15 @@
           <hr class="border-dashed border-gray-200 mb-3">
           <div class="flex justify-between text-base font-bold text-gray-900">
             <span>최종 결제 금액</span>
-            <span id="cart-total-price" class="text-[#FF6B00] text-lg">0원</span>
+            <span id="cart-total-price" class="text-[#2AC1BC] text-lg">0원</span>
           </div>
         </div>
 
         <!-- 결제 수단 -->
         <div class="bg-white rounded-xl shadow-sm p-4 mb-4">
-          <h3 class="font-bold text-gray-800 text-sm mb-3"><i class="fa-solid fa-credit-card text-[#FF6B00]"></i> 결제 수단 선택</h3>
+          <h3 class="font-bold text-gray-800 text-sm mb-3"><i class="fa-solid fa-credit-card text-[#2AC1BC]"></i> 결제 수단 선택</h3>
           <div class="grid grid-cols-2 gap-2">
-            <button onclick="setPayment('camera')" id="pay-camera" class="pay-method-btn border-2 border-[#FF6B00] bg-orange-50 text-[#FF6B00] rounded-lg py-3 text-center font-bold text-xs flex flex-col items-center justify-center gap-1">
+            <button onclick="setPayment('camera')" id="pay-camera" class="pay-method-btn border-2 border-[#2AC1BC] bg-teal-50 text-[#2AC1BC] rounded-lg py-3 text-center font-bold text-xs flex flex-col items-center justify-center gap-1">
               <i class="fa-solid fa-camera text-lg"></i> 카드 스캔 결제
             </button>
             <button onclick="setPayment('kakao')" id="pay-kakao" class="pay-method-btn border border-gray-200 text-gray-600 rounded-lg py-3 text-center font-bold text-xs flex flex-col items-center justify-center gap-1">
@@ -227,7 +227,7 @@
           </div>
         </div>
 
-        <button onclick="processOrder()" class="w-full bg-[#FF6B00] hover:bg-[#e05a00] text-white py-3.5 rounded-xl font-bold text-base shadow-md flex items-center justify-center gap-2 transition-all">
+        <button onclick="processOrder()" class="w-full bg-[#2AC1BC] hover:bg-[#1a9e99] text-white py-3.5 rounded-xl font-bold text-base shadow-md flex items-center justify-center gap-2 transition-all">
           <i class="fa-solid fa-receipt"></i> <span id="order-btn-price">0원</span> 결제 및 주문하기
         </button>
       </div>
@@ -247,24 +247,24 @@
           <h3 class="font-bold text-gray-800 text-base border-b border-gray-100 pb-2">기본 정보 입력</h3>
           <div>
             <label class="text-xs font-bold text-gray-700 block mb-1">이름 <span class="text-red-500">*</span></label>
-            <input type="text" id="reg-name" placeholder="홍길동" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#FF6B00] outline-none">
+            <input type="text" id="reg-name" placeholder="홍길동" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#2AC1BC] outline-none">
           </div>
           <div>
             <label class="text-xs font-bold text-gray-700 block mb-1">전화번호 <span class="text-red-500">*</span></label>
-            <input type="tel" id="reg-phone" placeholder="010-0000-0000" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#FF6B00] outline-none">
+            <input type="tel" id="reg-phone" placeholder="010-0000-0000" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#2AC1BC] outline-none">
           </div>
           <div>
             <label class="text-xs font-bold text-gray-700 block mb-1">기본 배달 주소 <span class="text-red-500">*</span></label>
-            <input type="text" id="reg-address" placeholder="배달받으실 주소를 입력해주세요" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#FF6B00] outline-none">
+            <input type="text" id="reg-address" placeholder="배달받으실 주소를 입력해주세요" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#2AC1BC] outline-none">
           </div>
-          <button onclick="registerUser()" class="w-full bg-[#FF6B00] text-white py-3 rounded-lg font-bold text-sm shadow-md mt-2 hover:bg-[#e05a00] transition-all">
+          <button onclick="registerUser()" class="w-full bg-[#2AC1BC] text-white py-3 rounded-lg font-bold text-sm shadow-md mt-2 hover:bg-[#1a9e99] transition-all">
             가입하기
           </button>
         </div>
       </div>
 
       <div id="auth-view" class="p-4 hidden">
-        <div class="bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-2xl p-5 shadow-sm mb-4">
+        <div class="bg-gradient-to-r from-teal-500 to-teal-400 text-white rounded-2xl p-5 shadow-sm mb-4">
           <div class="flex justify-between items-start">
             <div>
               <span class="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">단골 회원</span>
@@ -294,7 +294,7 @@
   <div id="camera-modal" class="fixed inset-0 bg-black/70 z-50 items-center justify-center p-4 hidden">
     <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl">
       <div class="flex justify-between items-center mb-4">
-        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-camera text-[#FF6B00]"></i> 카드 스캔 결제</h3>
+        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-camera text-[#2AC1BC]"></i> 카드 스캔 결제</h3>
         <button onclick="closeCameraModal()" class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
       </div>
       <!-- 카메라 뷰 -->
@@ -302,7 +302,7 @@
         <video id="video-el" autoplay playsinline muted class="w-full h-full object-cover"></video>
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div class="border-2 border-dashed border-white/70 rounded-xl w-4/5 h-3/5"></div>
-          <div class="scan-line absolute left-0 right-0 h-0.5 bg-[#FF6B00] shadow-lg mx-8"></div>
+          <div class="scan-line absolute left-0 right-0 h-0.5 bg-[#2AC1BC] shadow-lg mx-8"></div>
         </div>
       </div>
       <!-- 카메라 없을 때 -->
@@ -312,10 +312,10 @@
       </div>
       <p class="text-xs text-gray-500 text-center mb-4">카드를 네모 안에 위치시켜 주세요</p>
       <div id="camera-processing" class="hidden flex-col items-center gap-3 py-4">
-        <div class="w-10 h-10 border-4 border-gray-200 border-t-[#FF6B00] rounded-full animate-spin"></div>
+        <div class="w-10 h-10 border-4 border-gray-200 border-t-[#2AC1BC] rounded-full animate-spin"></div>
         <p class="text-sm text-gray-600 font-medium" id="camera-processing-text">카드 인식 중...</p>
       </div>
-      <button id="scan-btn" onclick="startScan()" class="w-full bg-[#FF6B00] text-white py-3 rounded-xl font-bold text-sm">
+      <button id="scan-btn" onclick="startScan()" class="w-full bg-[#2AC1BC] text-white py-3 rounded-xl font-bold text-sm">
         <i class="fa-solid fa-camera"></i> 카드 스캔하기
       </button>
     </div>
@@ -344,7 +344,7 @@
   <div id="transfer-modal" class="fixed inset-0 bg-black/70 z-50 items-center justify-center p-4 hidden">
     <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl">
       <div class="flex justify-between items-center mb-4">
-        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-building-columns text-[#FF6B00]"></i> 계좌이체</h3>
+        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-building-columns text-[#2AC1BC]"></i> 계좌이체</h3>
         <button onclick="closeTransferModal()" class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
       </div>
       <div class="bg-gray-50 rounded-xl p-4 mb-4 text-sm leading-8 text-center">
@@ -353,7 +353,7 @@
         <span class="text-gray-600">예금주: 할아버지치킨</span>
       </div>
       <p class="text-xs text-gray-500 text-center mb-4">입금 완료 후 아래 버튼을 눌러주세요</p>
-      <button onclick="confirmPayment('계좌이체')" class="w-full bg-[#FF6B00] text-white py-3 rounded-xl font-bold text-sm">
+      <button onclick="confirmPayment('계좌이체')" class="w-full bg-[#2AC1BC] text-white py-3 rounded-xl font-bold text-sm">
         입금 완료
       </button>
     </div>
@@ -368,7 +368,7 @@
       </div>
       <div class="text-5xl my-4">💵</div>
       <p class="text-sm text-gray-600 mb-4 leading-relaxed">배달 기사님께 현금으로<br>결제해 주세요</p>
-      <button onclick="confirmPayment('현금')" class="w-full bg-[#FF6B00] text-white py-3 rounded-xl font-bold text-sm">
+      <button onclick="confirmPayment('현금')" class="w-full bg-[#2AC1BC] text-white py-3 rounded-xl font-bold text-sm">
         확인 (현금 결제)
       </button>
     </div>
@@ -382,14 +382,14 @@
       <p class="text-xs text-gray-500 mt-2 mb-4 leading-relaxed">
         주문이 성공적으로 접수되었습니다.<br>맛있는 치킨을 정성껏 준비해 드릴게요!
       </p>
-      <div class="bg-orange-50 rounded-xl p-3 text-left border border-orange-100 mb-4">
-        <p class="text-xs text-gray-700"><span class="font-bold">주문 번호:</span> <span id="modal-order-no" class="text-[#FF6B00] font-black">#0000</span></p>
+      <div class="bg-teal-50 rounded-xl p-3 text-left border border-teal-100 mb-4">
+        <p class="text-xs text-gray-700"><span class="font-bold">주문 번호:</span> <span id="modal-order-no" class="text-[#2AC1BC] font-black">#0000</span></p>
         <p class="text-xs text-gray-700 mt-1"><span class="font-bold">결제 수단:</span> <span id="modal-payment-method">카드</span></p>
-        <p class="text-xs text-gray-700 mt-1"><span class="font-bold">총 금액:</span> <span id="modal-price" class="text-[#FF6B00] font-bold">0원</span></p>
+        <p class="text-xs text-gray-700 mt-1"><span class="font-bold">총 금액:</span> <span id="modal-price" class="text-[#2AC1BC] font-bold">0원</span></p>
       </div>
       <div class="bg-gray-50 rounded-xl p-3 text-left mb-4" id="modal-items"></div>
       <p class="text-xs text-gray-400 mb-4">⏰ 예상 조리·배달 시간: <strong class="text-gray-600">약 30분</strong></p>
-      <button onclick="closeSuccessModal()" class="w-full bg-[#FF6B00] text-white py-3 rounded-xl font-bold text-sm shadow-md hover:bg-[#e05a00]">
+      <button onclick="closeSuccessModal()" class="w-full bg-[#2AC1BC] text-white py-3 rounded-xl font-bold text-sm shadow-md hover:bg-[#1a9e99]">
         홈으로 돌아가기
       </button>
     </div>
@@ -397,7 +397,7 @@
 
   <!-- ===== BOTTOM NAV ===== -->
   <nav class="absolute bottom-0 inset-x-0 bg-white border-t border-gray-100 flex items-center justify-around py-2.5 z-40">
-    <button onclick="changeTab('home')" id="nav-home" class="nav-btn flex flex-col items-center gap-0.5 text-[#FF6B00]">
+    <button onclick="changeTab('home')" id="nav-home" class="nav-btn flex flex-col items-center gap-0.5 text-[#2AC1BC]">
       <i class="fa-solid fa-house text-lg"></i>
       <span class="text-[10px] font-bold">홈</span>
     </button>
@@ -457,9 +457,9 @@ window.onload = function() {
 function changeTab(name) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('text-[#FF6B00]'); b.classList.add('text-gray-400'); });
+  document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('text-[#2AC1BC]'); b.classList.add('text-gray-400'); });
   const nb = document.getElementById('nav-' + name);
-  if (nb) { nb.classList.remove('text-gray-400'); nb.classList.add('text-[#FF6B00]'); }
+  if (nb) { nb.classList.remove('text-gray-400'); nb.classList.add('text-[#2AC1BC]'); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (name === 'cart') updateCartUI();
 }
@@ -481,7 +481,7 @@ function renderBestProducts() {
       </div>
       <div class="mt-2 pt-2 border-t border-gray-50 flex items-center justify-between">
         <span class="font-extrabold text-gray-900 text-xs">${item.price.toLocaleString()}원</span>
-        <button onclick="addToCart(${item.id})" class="bg-[#FF6B00] hover:bg-[#e05a00] text-white w-6 h-6 rounded-full flex items-center justify-center transition-colors">
+        <button onclick="addToCart(${item.id})" class="bg-[#2AC1BC] hover:bg-[#1a9e99] text-white w-6 h-6 rounded-full flex items-center justify-center transition-colors">
           <i class="fa-solid fa-plus text-xs"></i>
         </button>
       </div>
@@ -503,9 +503,9 @@ function renderAllMenuItems() {
         </div>
         <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
         <p class="text-[11px] text-gray-400 line-clamp-1 mt-0.5">${item.desc}</p>
-        <span class="font-extrabold text-[#FF6B00] text-sm block mt-1">${item.price.toLocaleString()}원</span>
+        <span class="font-extrabold text-[#2AC1BC] text-sm block mt-1">${item.price.toLocaleString()}원</span>
       </div>
-      <button onclick="addToCart(${item.id})" class="bg-gray-100 hover:bg-[#FF6B00] hover:text-white text-gray-600 p-2 rounded-xl transition-all flex flex-col items-center gap-0.5 shrink-0">
+      <button onclick="addToCart(${item.id})" class="bg-gray-100 hover:bg-[#2AC1BC] hover:text-white text-gray-600 p-2 rounded-xl transition-all flex flex-col items-center gap-0.5 shrink-0">
         <i class="fa-solid fa-cart-arrow-down text-xs"></i>
         <span class="text-[9px] font-bold">담기</span>
       </button>
@@ -516,11 +516,11 @@ function renderAllMenuItems() {
 // ===== 카테고리 필터 =====
 function filterCategory(cat) {
   document.querySelectorAll('.cat-btn').forEach(b => {
-    b.classList.remove('bg-[#FF6B00]', 'text-white');
+    b.classList.remove('bg-[#2AC1BC]', 'text-white');
     b.classList.add('bg-gray-100', 'text-gray-600');
   });
   const ab = document.getElementById('btn-cat-' + cat);
-  if (ab) { ab.classList.remove('bg-gray-100', 'text-gray-600'); ab.classList.add('bg-[#FF6B00]', 'text-white'); }
+  if (ab) { ab.classList.remove('bg-gray-100', 'text-gray-600'); ab.classList.add('bg-[#2AC1BC]', 'text-white'); }
   document.querySelectorAll('.menu-item').forEach(el => {
     el.style.display = (cat === 'all' || el.dataset.category === cat) ? 'flex' : 'none';
   });
@@ -562,7 +562,7 @@ function updateCartUI() {
         <div class="text-2xl">${item.emoji}</div>
         <div class="flex-grow min-w-0">
           <h4 class="font-bold text-gray-800 text-xs">${item.name}</h4>
-          <span class="font-black text-[#FF6B00] text-xs block mt-1">${(item.price * item.qty).toLocaleString()}원</span>
+          <span class="font-black text-[#2AC1BC] text-xs block mt-1">${(item.price * item.qty).toLocaleString()}원</span>
         </div>
         <div class="flex items-center border border-gray-200 rounded-lg bg-gray-50">
           <button onclick="changeQty(${i}, -1)" class="px-2.5 py-1 text-gray-500 font-bold hover:bg-gray-100 rounded-l-lg">-</button>
@@ -589,11 +589,11 @@ function changeQty(i, delta) {
 function setPayment(method) {
   selectedPayment = method;
   document.querySelectorAll('.pay-method-btn').forEach(b => {
-    b.classList.remove('border-2', 'border-[#FF6B00]', 'bg-orange-50', 'text-[#FF6B00]');
+    b.classList.remove('border-2', 'border-[#2AC1BC]', 'bg-teal-50', 'text-[#2AC1BC]');
     b.classList.add('border', 'border-gray-200', 'text-gray-600');
   });
   const ab = document.getElementById('pay-' + method);
-  if (ab) { ab.classList.remove('border', 'border-gray-200', 'text-gray-600'); ab.classList.add('border-2', 'border-[#FF6B00]', 'bg-orange-50', 'text-[#FF6B00]'); }
+  if (ab) { ab.classList.remove('border', 'border-gray-200', 'text-gray-600'); ab.classList.add('border-2', 'border-[#2AC1BC]', 'bg-teal-50', 'text-[#2AC1BC]'); }
 }
 
 // ===== 주문 처리 =====
@@ -747,26 +747,27 @@ function playAddSound() {
   try {
     const ctx = getCtx();
     const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sine';
     o.connect(g); g.connect(ctx.destination);
-    o.frequency.setValueAtTime(880, ctx.currentTime);
-    o.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.1);
-    g.gain.setValueAtTime(0.2, ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
-    o.start(); o.stop(ctx.currentTime + 0.2);
+    o.frequency.setValueAtTime(660, ctx.currentTime);
+    o.frequency.linearRampToValueAtTime(740, ctx.currentTime + 0.07);
+    g.gain.setValueAtTime(0.1, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.13);
+    o.start(); o.stop(ctx.currentTime + 0.14);
   } catch(e) {}
 }
 
 function playOrderSound() {
   try {
     const ctx = getCtx();
-    // 치킨의 민족 주문! 팡파레
-    [[523,0,.15],[659,.15,.15],[784,.3,.15],[1047,.45,.35],[880,.8,.15],[1047,.95,.5]].forEach(([f,s,d]) => {
+    // 주문 완료 - 잔잔한 3음 알림
+    [[523, 0, 0.2],[659, 0.22, 0.2],[784, 0.44, 0.38]].forEach(([f, s, d]) => {
       const o = ctx.createOscillator(), g = ctx.createGain();
-      o.type = 'square'; o.connect(g); g.connect(ctx.destination);
+      o.type = 'sine'; o.connect(g); g.connect(ctx.destination);
       o.frequency.value = f;
       g.gain.setValueAtTime(0, ctx.currentTime + s);
-      g.gain.linearRampToValueAtTime(0.2, ctx.currentTime + s + 0.02);
-      g.gain.setValueAtTime(0.2, ctx.currentTime + s + d - 0.04);
+      g.gain.linearRampToValueAtTime(0.15, ctx.currentTime + s + 0.03);
+      g.gain.setValueAtTime(0.15, ctx.currentTime + s + d - 0.07);
       g.gain.linearRampToValueAtTime(0, ctx.currentTime + s + d);
       o.start(ctx.currentTime + s); o.stop(ctx.currentTime + s + d + 0.05);
     });
