@@ -1,1058 +1,777 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🍗 치킨의 민족</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>치킨의 민족 - 할아버지표 황금치킨</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #FF6B00;
-      --primary-dark: #E05A00;
-      --secondary: #FFF3E0;
-      --accent: #FFD700;
-      --text-dark: #1a1a1a;
-      --text-mid: #555;
-      --radius: 16px;
-      --shadow: 0 4px 20px rgba(0,0,0,0.12);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
-      background: #FFF8F0;
-      color: var(--text-dark);
-      min-height: 100vh;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      background: linear-gradient(135deg, #FF6B00, #FF9A00);
-      color: white;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 4px 12px rgba(255,107,0,0.4);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header-logo {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .header-logo span { font-size: 36px; }
-    .header-cart-btn {
-      background: white;
-      color: var(--primary);
-      border: none;
-      border-radius: 50px;
-      padding: 12px 22px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.15s;
-    }
-    .header-cart-btn:active { transform: scale(0.96); }
-    .cart-count {
-      background: #FF3B30;
-      color: white;
-      border-radius: 50%;
-      width: 26px;
-      height: 26px;
-      font-size: 14px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ===== HERO BANNER ===== */
-    .hero {
-      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-      padding: 28px 24px;
-      text-align: center;
-      border-bottom: 3px solid #FFD700;
-    }
-    .hero h2 {
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--primary-dark);
-      line-height: 1.3;
-    }
-    .hero p {
-      font-size: 18px;
-      color: var(--text-mid);
-      margin-top: 8px;
-    }
-
-    /* ===== CATEGORY TABS ===== */
-    .category-tabs {
-      display: flex;
-      gap: 10px;
-      padding: 20px 24px 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .category-tabs::-webkit-scrollbar { display: none; }
-    .tab-btn {
-      flex-shrink: 0;
-      background: white;
-      border: 2px solid #ddd;
-      border-radius: 50px;
-      padding: 12px 24px;
-      font-size: 18px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-    }
-
-    /* ===== MENU GRID ===== */
-    .menu-section { padding: 16px 24px 120px; }
-    .section-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 16px;
-      padding-left: 4px;
-      border-left: 5px solid var(--primary);
-      padding-left: 12px;
-    }
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .menu-card {
-      background: white;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
-    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
-    .menu-card-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background: linear-gradient(135deg, #FFE0B2, #FFCC80);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-    }
-    .menu-card-body { padding: 16px; }
-    .menu-card-name {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-    .menu-card-desc {
-      font-size: 15px;
-      color: var(--text-mid);
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-    .menu-card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .menu-price {
-      font-size: 24px;
-      font-weight: 900;
-      color: var(--primary);
-    }
-    .add-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      padding: 12px 22px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .add-btn:hover { background: var(--primary-dark); }
-    .add-btn:active { transform: scale(0.95); }
-    .badge-new {
-      background: #FF3B30;
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 6px;
-      padding: 3px 8px;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
-    .badge-best {
-      background: #FFD700;
-      color: #333;
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 6px;
-      padding: 3px 8px;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
-
-    /* ===== CART MODAL ===== */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 200;
-      display: none;
-      align-items: flex-end;
-    }
-    .overlay.show { display: flex; }
-    .modal {
-      background: white;
-      border-radius: 24px 24px 0 0;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 28px 24px 40px;
-      animation: slideUp 0.3s ease;
-    }
-    @keyframes slideUp {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
-    }
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .modal-title { font-size: 26px; font-weight: 900; }
-    .close-btn {
-      background: #f0f0f0;
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 22px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ===== CART ITEMS ===== */
-    .cart-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid #eee;
-    }
-    .cart-item-emoji { font-size: 44px; }
-    .cart-item-info { flex: 1; }
-    .cart-item-name { font-size: 20px; font-weight: 700; }
-    .cart-item-price { font-size: 18px; color: var(--primary); font-weight: 600; }
-    .qty-control {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .qty-btn {
-      background: #f0f0f0;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 22px;
-      cursor: pointer;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .qty-btn:hover { background: #ddd; }
-    .qty-num { font-size: 20px; font-weight: 800; min-width: 28px; text-align: center; }
-
-    /* ===== TOTAL & ORDER BTN ===== */
-    .cart-total {
-      margin-top: 20px;
-      padding: 16px;
-      background: #FFF3E0;
-      border-radius: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .cart-total-label { font-size: 20px; font-weight: 700; }
-    .cart-total-price { font-size: 28px; font-weight: 900; color: var(--primary); }
-    .order-btn {
-      width: 100%;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 16px;
-      padding: 20px;
-      font-size: 24px;
-      font-weight: 900;
-      margin-top: 16px;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .order-btn:hover { background: var(--primary-dark); }
-    .order-btn:active { transform: scale(0.98); }
-    .empty-cart {
-      text-align: center;
-      padding: 40px 0;
-      font-size: 20px;
-      color: #aaa;
-    }
-
-    /* ===== PAYMENT MODAL ===== */
-    #paymentModal .modal {
-      max-height: 92vh;
-    }
-    .pay-methods {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin: 16px 0;
-    }
-    .pay-method-btn {
-      border: 3px solid #ddd;
-      border-radius: 14px;
-      padding: 18px 10px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      background: white;
-      text-align: center;
-      transition: all 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-    .pay-method-btn span { font-size: 36px; }
-    .pay-method-btn.selected {
-      border-color: var(--primary);
-      background: #FFF3E0;
-      color: var(--primary);
-    }
-    .kakao-btn { border-color: #FEE500; background: #FEE500; }
-    .kakao-btn.selected { border-color: #E6CF00; background: #FFF0A0; }
-
-    /* ===== CAMERA SCAN ===== */
-    #cameraSection {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      margin: 16px 0;
-    }
-    #cameraSection.show { display: flex; }
-    .camera-frame {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      border: 4px solid var(--primary);
-      background: #000;
-    }
-    #videoEl {
-      width: 100%;
-      display: block;
-    }
-    .camera-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-    .scan-line {
-      width: 80%;
-      height: 3px;
-      background: rgba(255, 107, 0, 0.8);
-      box-shadow: 0 0 12px rgba(255,107,0,0.9);
-      animation: scan 2s linear infinite;
-      border-radius: 2px;
-    }
-    @keyframes scan {
-      0% { transform: translateY(-60px); }
-      50% { transform: translateY(60px); }
-      100% { transform: translateY(-60px); }
-    }
-    .card-guide {
-      border: 3px dashed rgba(255,255,255,0.7);
-      width: 75%;
-      height: 48%;
-      border-radius: 12px;
-      position: absolute;
-    }
-    .camera-hint {
-      font-size: 17px;
-      color: var(--text-mid);
-      text-align: center;
-      line-height: 1.5;
-    }
-    .scan-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 16px 36px;
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    /* ===== KAKAO PAY ===== */
-    #kakaoSection {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      margin: 16px 0;
-    }
-    #kakaoSection.show { display: flex; }
-    .kakao-qr {
-      width: 200px;
-      height: 200px;
-      background: #FEE500;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-      box-shadow: var(--shadow);
-    }
-    .kakao-info {
-      font-size: 18px;
-      text-align: center;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
-    .kakao-pay-btn {
-      background: #FEE500;
-      color: #333;
-      border: none;
-      border-radius: 12px;
-      padding: 16px 40px;
-      font-size: 22px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    /* ===== SUCCESS SCREEN ===== */
-    #successModal .modal {
-      text-align: center;
-      padding: 48px 24px;
-    }
-    .success-icon { font-size: 80px; animation: pop 0.5s ease; }
-    @keyframes pop {
-      0% { transform: scale(0); }
-      70% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    .success-title {
-      font-size: 34px;
-      font-weight: 900;
-      color: var(--primary);
-      margin: 16px 0 8px;
-    }
-    .success-subtitle {
-      font-size: 20px;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
-    .order-number {
-      background: #FFF3E0;
-      border: 2px dashed var(--primary);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 20px 0;
-      font-size: 20px;
-    }
-    .order-number strong {
-      font-size: 36px;
-      color: var(--primary);
-      display: block;
-      font-weight: 900;
-    }
-    .order-items-summary {
-      text-align: left;
-      border-top: 2px solid #eee;
-      padding-top: 16px;
-      margin-top: 16px;
-    }
-    .order-items-summary h4 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .order-item-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 18px;
-      padding: 6px 0;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    .close-success-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 14px;
-      padding: 18px 40px;
-      font-size: 22px;
-      font-weight: 700;
-      margin-top: 20px;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    /* ===== TOAST ===== */
-    .toast {
-      position: fixed;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: rgba(0,0,0,0.8);
-      color: white;
-      border-radius: 50px;
-      padding: 14px 28px;
-      font-size: 18px;
-      font-weight: 600;
-      z-index: 999;
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.3s;
-      white-space: nowrap;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    /* ===== PROCESSING ===== */
-    .processing-box {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      padding: 30px 0;
-    }
-    .processing-box.show { display: flex; }
-    .spinner {
-      width: 64px;
-      height: 64px;
-      border: 6px solid #eee;
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .processing-text { font-size: 20px; font-weight: 600; color: var(--text-mid); }
-
-    @media (max-width: 500px) {
-      .menu-grid { grid-template-columns: 1fr; }
-      .pay-methods { grid-template-columns: 1fr 1fr; }
-      .header-logo { font-size: 22px; }
-    }
+    body { font-family: 'Noto Sans KR', sans-serif; background-color: #f3f4f6; -webkit-tap-highlight-color: transparent; }
+    @media (min-width: 640px) {
+      .mobile-frame { max-width: 430px; margin: 0 auto; min-height: 100vh; box-shadow: 0 0 25px rgba(0,0,0,0.15); }
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    @keyframes scan { 0%,100% { top: 20%; } 50% { top: 70%; } }
+    .scan-line { animation: scan 2s ease-in-out infinite; }
   </style>
 </head>
-<body>
+<body class="bg-gray-100 flex justify-center min-h-screen">
 
-<!-- ===== HEADER ===== -->
-<header>
-  <div class="header-logo">
-    <span>🍗</span>
-    치킨의 민족
-  </div>
-  <button class="header-cart-btn" onclick="openCart()">
-    🛒 장바구니
-    <span class="cart-count" id="cartCount">0</span>
-  </button>
-</header>
+<div class="mobile-frame w-full bg-white flex flex-col relative pb-16 min-h-screen overflow-x-hidden">
 
-<!-- ===== HERO ===== -->
-<div class="hero">
-  <h2>🔥 할아버지표 황금 치킨 🔥</h2>
-  <p>바삭하고 맛있는 치킨을 지금 바로 주문하세요!</p>
-</div>
-
-<!-- ===== CATEGORY TABS ===== -->
-<div class="category-tabs">
-  <button class="tab-btn active" onclick="filterMenu('all', this)">전체</button>
-  <button class="tab-btn" onclick="filterMenu('chicken', this)">🍗 치킨</button>
-  <button class="tab-btn" onclick="filterMenu('side', this)">🍟 사이드</button>
-  <button class="tab-btn" onclick="filterMenu('drink', this)">🥤 음료</button>
-  <button class="tab-btn" onclick="filterMenu('set', this)">🎁 세트</button>
-</div>
-
-<!-- ===== MENU ===== -->
-<div class="menu-section">
-  <div class="section-title">🍗 오늘의 메뉴</div>
-  <div class="menu-grid" id="menuGrid"></div>
-</div>
-
-<!-- ===== CART MODAL ===== -->
-<div class="overlay" id="cartOverlay" onclick="closeCart(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">🛒 장바구니</div>
-      <button class="close-btn" onclick="closeOverlay('cartOverlay')">✕</button>
+  <!-- ===== HEADER ===== -->
+  <header class="sticky top-0 z-50 bg-[#FF6B00] text-white p-4 flex justify-between items-center shadow-md">
+    <div class="flex items-center gap-2 cursor-pointer" onclick="changeTab('home')">
+      <i class="fa-solid fa-drumstick-bite text-2xl"></i>
+      <h1 class="text-xl font-black tracking-tight">치킨의 민족</h1>
     </div>
-    <div id="cartItems"></div>
-    <div id="cartTotal" style="display:none">
-      <div class="cart-total">
-        <span class="cart-total-label">총 금액</span>
-        <span class="cart-total-price" id="totalPrice">0원</span>
-      </div>
-      <button class="order-btn" onclick="openPayment()">💳 결제하기</button>
-    </div>
-  </div>
-</div>
-
-<!-- ===== PAYMENT MODAL ===== -->
-<div class="overlay" id="paymentOverlay" onclick="closeCart(event)">
-  <div class="modal" id="paymentModal">
-    <div class="modal-header">
-      <div class="modal-title">💳 결제 방법 선택</div>
-      <button class="close-btn" onclick="closeOverlay('paymentOverlay')">✕</button>
-    </div>
-
-    <div class="pay-methods">
-      <button class="pay-method-btn" id="btnCard" onclick="selectPay('card')">
-        <span>💳</span>
-        카드 결제<br><small style="font-weight:400;font-size:13px;">카메라 스캔</small>
+    <div class="flex items-center gap-4">
+      <button onclick="changeTab('cart')" class="relative p-1">
+        <i class="fa-solid fa-basket-shopping text-xl"></i>
+        <span id="cart-badge" class="absolute -top-1 -right-2 bg-red-600 text-white text-[10px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
       </button>
-      <button class="pay-method-btn kakao-btn" id="btnKakao" onclick="selectPay('kakao')">
-        <span>💛</span>
-        카카오페이
-      </button>
-      <button class="pay-method-btn" id="btnCash" onclick="selectPay('cash')">
-        <span>💵</span>
-        현금 결제
-      </button>
-      <button class="pay-method-btn" id="btnTransfer" onclick="selectPay('transfer')">
-        <span>🏦</span>
-        계좌이체
+      <button onclick="changeTab('profile')" class="p-1">
+        <i class="fa-regular fa-user text-xl"></i>
       </button>
     </div>
+  </header>
 
-    <!-- Camera Section -->
-    <div id="cameraSection">
-      <div class="camera-frame">
-        <video id="videoEl" autoplay playsinline muted></video>
-        <div class="camera-overlay">
-          <div class="card-guide"></div>
-          <div class="scan-line"></div>
+  <!-- ===== MAIN ===== -->
+  <main class="flex-grow overflow-y-auto bg-gray-50 pb-8">
+
+    <!-- ======================================== -->
+    <!-- TAB: HOME                                -->
+    <!-- ======================================== -->
+    <div id="tab-home" class="tab-content active">
+      <!-- 히어로 배너 -->
+      <div class="bg-gradient-to-b from-[#FF6B00] to-[#ff8c00] text-white px-5 pb-6 pt-2 rounded-b-2xl shadow-inner">
+        <p class="text-xs opacity-90 mb-1">매일 직접 튀기는 바삭한 정통 치킨</p>
+        <h2 class="text-2xl font-bold leading-tight">할아버지의 황금 레시피,<br>오늘도 바삭하게 튀겨드립니다 🍗</h2>
+        <div class="bg-white text-gray-800 rounded-xl p-3 mt-4 flex items-center justify-between shadow-md">
+          <div class="flex items-center gap-2">
+            <span class="bg-orange-100 text-orange-600 text-xs font-bold px-2 py-0.5 rounded-full">오늘 추천</span>
+            <span class="text-xs text-gray-500">지금 바로 주문 가능!</span>
+          </div>
+          <button onclick="changeTab('menu')" class="text-[#FF6B00] text-xs font-bold flex items-center gap-1">
+            메뉴보기 <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
         </div>
       </div>
-      <p class="camera-hint">📸 카드를 네모 안에 넣어주세요<br>카메라로 카드를 스캔합니다</p>
-      <button class="scan-btn" onclick="simulateScan()">📷 카드 스캔하기</button>
-    </div>
 
-    <!-- KakaoPay Section -->
-    <div id="kakaoSection">
-      <div class="kakao-qr">💛</div>
-      <p class="kakao-info">📱 카카오톡 앱을 열고<br>QR 코드를 스캔해 주세요</p>
-      <button class="kakao-pay-btn" onclick="simulateKakaoPay()">카카오페이로 결제</button>
-    </div>
-
-    <!-- Cash Section -->
-    <div id="cashSection" style="display:none; text-align:center; padding:20px 0;">
-      <div style="font-size:64px;">💵</div>
-      <p style="font-size:20px; margin:12px 0; font-weight:600;">현금으로 결제합니다</p>
-      <p style="font-size:18px; color:#888;">점원에게 현금을 전달해 주세요</p>
-      <button class="scan-btn" style="margin-top:16px; width:100%; font-size:22px; padding:18px;" onclick="confirmPayment()">결제 완료</button>
-    </div>
-
-    <!-- Transfer Section -->
-    <div id="transferSection" style="display:none; text-align:center; padding:20px 0;">
-      <div style="font-size:64px;">🏦</div>
-      <div style="background:#f5f5f5; border-radius:12px; padding:16px; margin:12px 0; font-size:18px; line-height:2;">
-        <strong>입금 계좌</strong><br>
-        국민은행 123-456-7890<br>
-        예금주: 할아버지치킨
+      <!-- 오늘의 추천 -->
+      <div class="px-4 py-4">
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="font-bold text-gray-800 text-base flex items-center gap-1">
+              <i class="fa-solid fa-fire text-orange-500"></i> 오늘의 베스트 메뉴
+            </h3>
+            <span class="text-xs text-green-600 font-medium"><i class="fa-solid fa-circle-check"></i> 바로 주문 가능</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="bg-orange-50 p-3 rounded-lg text-center border border-orange-100 cursor-pointer" onclick="goToMenuItem(1)">
+              <span class="text-2xl block">🍗</span>
+              <span class="text-xs text-orange-800 font-semibold block mt-1">황금 후라이드</span>
+              <span class="text-sm font-bold text-gray-900 block mt-1">17,000원</span>
+            </div>
+            <div class="bg-red-50 p-3 rounded-lg text-center border border-red-100 cursor-pointer" onclick="goToMenuItem(2)">
+              <span class="text-2xl block">🍖</span>
+              <span class="text-xs text-red-800 font-semibold block mt-1">양념치킨</span>
+              <span class="text-sm font-bold text-gray-900 block mt-1">18,000원</span>
+            </div>
+            <div class="bg-yellow-50 p-3 rounded-lg text-center border border-yellow-100 cursor-pointer" onclick="goToMenuItem(3)">
+              <span class="text-2xl block">🍗</span>
+              <span class="text-xs text-yellow-800 font-semibold block mt-1">반반치킨</span>
+              <span class="text-sm font-bold text-gray-900 block mt-1">19,000원</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <button class="scan-btn" style="width:100%; font-size:22px; padding:18px;" onclick="confirmPayment()">입금 완료</button>
+
+      <!-- 빠른 메뉴 카테고리 -->
+      <div class="px-4 py-2">
+        <h3 class="font-bold text-gray-800 text-lg mb-3">카테고리</h3>
+        <div class="grid grid-cols-4 gap-3 text-center">
+          <div onclick="goCategory('chicken')" class="cursor-pointer">
+            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-orange-300">
+              <span class="text-2xl">🍗</span>
+            </div>
+            <span class="text-xs font-medium text-gray-700 mt-2 block">치킨</span>
+          </div>
+          <div onclick="goCategory('side')" class="cursor-pointer">
+            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-orange-300">
+              <span class="text-2xl">🍟</span>
+            </div>
+            <span class="text-xs font-medium text-gray-700 mt-2 block">사이드</span>
+          </div>
+          <div onclick="goCategory('drink')" class="cursor-pointer">
+            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-orange-300">
+              <span class="text-2xl">🥤</span>
+            </div>
+            <span class="text-xs font-medium text-gray-700 mt-2 block">음료</span>
+          </div>
+          <div onclick="goCategory('set')" class="cursor-pointer">
+            <div class="bg-white rounded-2xl p-3 shadow-sm mx-auto w-14 h-14 flex items-center justify-center border border-gray-100 hover:border-orange-300">
+              <span class="text-2xl">🎁</span>
+            </div>
+            <span class="text-xs font-medium text-gray-700 mt-2 block">세트</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 인기 메뉴 2열 -->
+      <div class="px-4 py-4">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="font-bold text-gray-800 text-lg">인기 메뉴</h3>
+          <button onclick="changeTab('menu')" class="text-gray-500 text-xs font-medium flex items-center gap-0.5">
+            더보기 <i class="fa-solid fa-angle-right"></i>
+          </button>
+        </div>
+        <div class="grid grid-cols-2 gap-3" id="best-products-container"></div>
+      </div>
+
+      <!-- 할아버지 약속 -->
+      <div class="m-4 p-4 rounded-xl bg-orange-50 border border-orange-100 flex gap-3 items-start">
+        <span class="text-2xl">👴</span>
+        <div>
+          <h4 class="font-bold text-orange-800 text-sm">할아버지의 약속</h4>
+          <p class="text-xs text-orange-900 mt-1 leading-relaxed">
+            "40년 비법 레시피로 매일 직접 튀깁니다. 신선한 국내산 닭고기만 사용하며, 단 한 번도 냉동육을 쓴 적이 없습니다."
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- Processing -->
-    <div class="processing-box" id="processingBox">
-      <div class="spinner"></div>
-      <div class="processing-text" id="processingText">결제 처리 중...</div>
+    <!-- ======================================== -->
+    <!-- TAB: MENU (전체 메뉴)                    -->
+    <!-- ======================================== -->
+    <div id="tab-menu" class="tab-content">
+      <div class="bg-white p-4 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-800">🍗 전체 메뉴</h2>
+        <p class="text-xs text-gray-500 mt-1">신선한 국내산 닭고기로 매일 직접 조리합니다.</p>
+      </div>
+
+      <!-- 카테고리 필터 -->
+      <div class="bg-white sticky top-[60px] z-40 border-b border-gray-100 flex gap-2 p-3 overflow-x-auto no-scrollbar shadow-sm">
+        <button id="btn-cat-all" onclick="filterCategory('all')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-[#FF6B00] text-white">전체</button>
+        <button id="btn-cat-chicken" onclick="filterCategory('chicken')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600">🍗 치킨</button>
+        <button id="btn-cat-side" onclick="filterCategory('side')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600">🍟 사이드</button>
+        <button id="btn-cat-drink" onclick="filterCategory('drink')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600">🥤 음료</button>
+        <button id="btn-cat-set" onclick="filterCategory('set')" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600">🎁 세트</button>
+      </div>
+
+      <div class="p-4 flex flex-col gap-3" id="menu-list-container"></div>
     </div>
 
-    <div style="margin-top:12px; background:#FFF3E0; border-radius:10px; padding:14px; font-size:16px; color:#888; text-align:center;">
-      총 결제 금액: <strong style="font-size:20px; color:var(--primary)" id="payTotalLabel">0원</strong>
+    <!-- ======================================== -->
+    <!-- TAB: CART (장바구니 + 결제)              -->
+    <!-- ======================================== -->
+    <div id="tab-cart" class="tab-content">
+      <div class="bg-white p-4 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-800">🛒 장바구니</h2>
+        <p class="text-xs text-gray-500 mt-1">담으신 메뉴를 확인하고 결제해주세요.</p>
+      </div>
+
+      <!-- 빈 장바구니 -->
+      <div id="empty-cart-view" class="py-12 px-4 text-center hidden">
+        <div class="text-5xl mb-4">🛒</div>
+        <p class="text-gray-500 font-bold text-sm">장바구니가 비어있습니다.</p>
+        <p class="text-gray-400 text-xs mt-1">맛있는 치킨을 장바구니에 담아보세요!</p>
+        <button onclick="changeTab('menu')" class="bg-[#FF6B00] text-white px-6 py-2.5 rounded-xl font-bold text-sm mt-5 shadow-sm">
+          메뉴 보러 가기
+        </button>
+      </div>
+
+      <!-- 장바구니 있을 때 -->
+      <div id="active-cart-view" class="p-4">
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-4 divide-y divide-gray-100" id="cart-items-container"></div>
+
+        <!-- 금액 요약 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-4">
+          <h3 class="font-bold text-gray-800 text-sm mb-3">결제 예상 금액</h3>
+          <div class="flex justify-between text-xs text-gray-600 mb-2">
+            <span>상품 합계</span>
+            <span id="cart-subtotal">0원</span>
+          </div>
+          <div class="flex justify-between text-xs text-gray-600 mb-4">
+            <span>배달비</span>
+            <span class="text-green-600">무료</span>
+          </div>
+          <hr class="border-dashed border-gray-200 mb-3">
+          <div class="flex justify-between text-base font-bold text-gray-900">
+            <span>최종 결제 금액</span>
+            <span id="cart-total-price" class="text-[#FF6B00] text-lg">0원</span>
+          </div>
+        </div>
+
+        <!-- 결제 수단 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-4">
+          <h3 class="font-bold text-gray-800 text-sm mb-3"><i class="fa-solid fa-credit-card text-[#FF6B00]"></i> 결제 수단 선택</h3>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="setPayment('camera')" id="pay-camera" class="pay-method-btn border-2 border-[#FF6B00] bg-orange-50 text-[#FF6B00] rounded-lg py-3 text-center font-bold text-xs flex flex-col items-center justify-center gap-1">
+              <i class="fa-solid fa-camera text-lg"></i> 카드 스캔 결제
+            </button>
+            <button onclick="setPayment('kakao')" id="pay-kakao" class="pay-method-btn border border-gray-200 text-gray-600 rounded-lg py-3 text-center font-bold text-xs flex flex-col items-center justify-center gap-1">
+              <span class="text-lg">💛</span> 카카오페이
+            </button>
+            <button onclick="setPayment('cash')" id="pay-cash" class="pay-method-btn border border-gray-200 text-gray-600 rounded-lg py-3 text-center font-bold text-xs flex flex-col items-center justify-center gap-1">
+              <i class="fa-solid fa-money-bill text-lg"></i> 현금 결제
+            </button>
+            <button onclick="setPayment('transfer')" id="pay-transfer" class="pay-method-btn border border-gray-200 text-gray-600 rounded-lg py-3 text-center font-bold text-xs flex flex-col items-center justify-center gap-1">
+              <i class="fa-solid fa-building-columns text-lg"></i> 계좌이체
+            </button>
+          </div>
+        </div>
+
+        <button onclick="processOrder()" class="w-full bg-[#FF6B00] hover:bg-[#e05a00] text-white py-3.5 rounded-xl font-bold text-base shadow-md flex items-center justify-center gap-2 transition-all">
+          <i class="fa-solid fa-receipt"></i> <span id="order-btn-price">0원</span> 결제 및 주문하기
+        </button>
+      </div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- TAB: PROFILE                             -->
+    <!-- ======================================== -->
+    <div id="tab-profile" class="tab-content">
+      <div id="unauth-view" class="p-4">
+        <div class="text-center py-6">
+          <span class="text-5xl">🍗</span>
+          <h2 class="text-xl font-black text-gray-800 mt-2">치킨의 민족 회원가입</h2>
+          <p class="text-xs text-gray-500 mt-1">가입하시면 주문 내역 관리가 편리해요!</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-4">
+          <h3 class="font-bold text-gray-800 text-base border-b border-gray-100 pb-2">기본 정보 입력</h3>
+          <div>
+            <label class="text-xs font-bold text-gray-700 block mb-1">이름 <span class="text-red-500">*</span></label>
+            <input type="text" id="reg-name" placeholder="홍길동" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#FF6B00] outline-none">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-gray-700 block mb-1">전화번호 <span class="text-red-500">*</span></label>
+            <input type="tel" id="reg-phone" placeholder="010-0000-0000" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#FF6B00] outline-none">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-gray-700 block mb-1">기본 배달 주소 <span class="text-red-500">*</span></label>
+            <input type="text" id="reg-address" placeholder="배달받으실 주소를 입력해주세요" class="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:ring-1 focus:ring-[#FF6B00] outline-none">
+          </div>
+          <button onclick="registerUser()" class="w-full bg-[#FF6B00] text-white py-3 rounded-lg font-bold text-sm shadow-md mt-2 hover:bg-[#e05a00] transition-all">
+            가입하기
+          </button>
+        </div>
+      </div>
+
+      <div id="auth-view" class="p-4 hidden">
+        <div class="bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-2xl p-5 shadow-sm mb-4">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">단골 회원</span>
+              <h3 class="text-xl font-bold mt-1" id="profile-name">홍길동</h3>
+              <p class="text-xs opacity-90 mt-1" id="profile-phone-display">010-0000-0000</p>
+            </div>
+            <span class="text-3xl">🍗</span>
+          </div>
+          <div class="mt-4 pt-4 border-t border-white/20 text-xs">
+            <span>배달 주소: </span><strong id="profile-address-display">주소</strong>
+          </div>
+        </div>
+        <button onclick="logoutUser()" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2.5 rounded-xl font-bold text-xs transition-all">
+          로그아웃
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== TOAST ===== -->
+  <div id="toast-message" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-900/90 text-white text-xs font-medium py-2.5 px-5 rounded-full shadow-lg z-50 flex items-center gap-2 opacity-0 transition-all pointer-events-none duration-300 whitespace-nowrap">
+    <span id="toast-text">담겼습니다.</span>
+  </div>
+
+  <!-- ===== 카메라 결제 모달 ===== -->
+  <div id="camera-modal" class="fixed inset-0 bg-black/70 z-50 items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-camera text-[#FF6B00]"></i> 카드 스캔 결제</h3>
+        <button onclick="closeCameraModal()" class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+      </div>
+      <!-- 카메라 뷰 -->
+      <div id="camera-live-view" class="relative bg-black rounded-xl overflow-hidden mb-3" style="height:200px;">
+        <video id="video-el" autoplay playsinline muted class="w-full h-full object-cover"></video>
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="border-2 border-dashed border-white/70 rounded-xl w-4/5 h-3/5"></div>
+          <div class="scan-line absolute left-0 right-0 h-0.5 bg-[#FF6B00] shadow-lg mx-8"></div>
+        </div>
+      </div>
+      <!-- 카메라 없을 때 -->
+      <div id="camera-fallback" class="hidden bg-gray-100 rounded-xl p-6 text-center mb-3">
+        <i class="fa-solid fa-camera text-4xl text-gray-300 mb-2"></i>
+        <p class="text-xs text-gray-500">카메라 권한을 허용해주세요<br>또는 다른 결제 수단을 이용하세요</p>
+      </div>
+      <p class="text-xs text-gray-500 text-center mb-4">카드를 네모 안에 위치시켜 주세요</p>
+      <div id="camera-processing" class="hidden flex-col items-center gap-3 py-4">
+        <div class="w-10 h-10 border-4 border-gray-200 border-t-[#FF6B00] rounded-full animate-spin"></div>
+        <p class="text-sm text-gray-600 font-medium" id="camera-processing-text">카드 인식 중...</p>
+      </div>
+      <button id="scan-btn" onclick="startScan()" class="w-full bg-[#FF6B00] text-white py-3 rounded-xl font-bold text-sm">
+        <i class="fa-solid fa-camera"></i> 카드 스캔하기
+      </button>
     </div>
   </div>
-</div>
 
-<!-- ===== SUCCESS MODAL ===== -->
-<div class="overlay" id="successOverlay">
-  <div class="modal" id="successModal">
-    <div class="success-icon">🎉</div>
-    <div class="success-title">치킨의 민족 주문!</div>
-    <div class="success-subtitle">주문이 성공적으로 접수되었습니다 🍗</div>
-    <div class="order-number">
-      주문 번호
-      <strong id="orderNumber">#0000</strong>
-    </div>
-    <div class="order-items-summary">
-      <h4>📋 주문 내역</h4>
-      <div id="orderSummaryItems"></div>
-      <div class="order-item-row" style="font-weight:800; font-size:20px; margin-top:8px;">
-        <span>총 금액</span>
-        <span id="orderSummaryTotal" style="color:var(--primary)"></span>
+  <!-- ===== 카카오페이 모달 ===== -->
+  <div id="kakao-modal" class="fixed inset-0 bg-black/70 z-50 items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl text-center">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-gray-800 text-base">💛 카카오페이 결제</h3>
+        <button onclick="closeKakaoModal()" class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
       </div>
+      <div class="bg-[#FEE500] rounded-2xl p-6 mb-4 flex items-center justify-center text-5xl">💛</div>
+      <p class="text-sm text-gray-600 mb-4 leading-relaxed">카카오톡 앱을 열어<br>QR 코드를 스캔해 주세요</p>
+      <div id="kakao-processing" class="hidden flex-col items-center gap-3 py-3 mb-3">
+        <div class="w-10 h-10 border-4 border-gray-200 border-t-yellow-400 rounded-full animate-spin"></div>
+        <p class="text-sm text-gray-600 font-medium">카카오페이 결제 처리 중...</p>
+      </div>
+      <button onclick="simulateKakaoPay()" class="w-full bg-[#FEE500] text-gray-800 py-3 rounded-xl font-bold text-sm">
+        카카오페이로 결제하기
+      </button>
     </div>
-    <p style="font-size:17px; color:#888; margin-top:12px; line-height:1.6;">
-      ⏰ 예상 조리 시간: <strong style="color:#333;">20~30분</strong><br>
-      감사합니다! 맛있게 드세요 😊
-    </p>
-    <button class="close-success-btn" onclick="closeSuccess()">홈으로 돌아가기 🏠</button>
   </div>
-</div>
 
-<!-- ===== TOAST ===== -->
-<div class="toast" id="toast"></div>
+  <!-- ===== 계좌이체 모달 ===== -->
+  <div id="transfer-modal" class="fixed inset-0 bg-black/70 z-50 items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-building-columns text-[#FF6B00]"></i> 계좌이체</h3>
+        <button onclick="closeTransferModal()" class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-4 mb-4 text-sm leading-8 text-center">
+        <strong class="block text-gray-500 text-xs mb-1">입금 계좌</strong>
+        <span class="font-black text-gray-900 text-base">국민은행 123-456-7890</span><br>
+        <span class="text-gray-600">예금주: 할아버지치킨</span>
+      </div>
+      <p class="text-xs text-gray-500 text-center mb-4">입금 완료 후 아래 버튼을 눌러주세요</p>
+      <button onclick="confirmPayment('계좌이체')" class="w-full bg-[#FF6B00] text-white py-3 rounded-xl font-bold text-sm">
+        입금 완료
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== 현금 모달 ===== -->
+  <div id="cash-modal" class="fixed inset-0 bg-black/70 z-50 items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl w-full max-w-sm p-5 shadow-2xl text-center">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-money-bill text-green-600"></i> 현금 결제</h3>
+        <button onclick="closeCashModal()" class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+      </div>
+      <div class="text-5xl my-4">💵</div>
+      <p class="text-sm text-gray-600 mb-4 leading-relaxed">배달 기사님께 현금으로<br>결제해 주세요</p>
+      <button onclick="confirmPayment('현금')" class="w-full bg-[#FF6B00] text-white py-3 rounded-xl font-bold text-sm">
+        확인 (현금 결제)
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== 주문 완료 모달 ===== -->
+  <div id="success-modal" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl w-full max-w-sm p-6 text-center shadow-2xl">
+      <div class="text-5xl mb-3 animate-bounce">🎉</div>
+      <h3 class="text-xl font-bold text-gray-900">치킨의 민족 주문!</h3>
+      <p class="text-xs text-gray-500 mt-2 mb-4 leading-relaxed">
+        주문이 성공적으로 접수되었습니다.<br>맛있는 치킨을 정성껏 준비해 드릴게요!
+      </p>
+      <div class="bg-orange-50 rounded-xl p-3 text-left border border-orange-100 mb-4">
+        <p class="text-xs text-gray-700"><span class="font-bold">주문 번호:</span> <span id="modal-order-no" class="text-[#FF6B00] font-black">#0000</span></p>
+        <p class="text-xs text-gray-700 mt-1"><span class="font-bold">결제 수단:</span> <span id="modal-payment-method">카드</span></p>
+        <p class="text-xs text-gray-700 mt-1"><span class="font-bold">총 금액:</span> <span id="modal-price" class="text-[#FF6B00] font-bold">0원</span></p>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-3 text-left mb-4" id="modal-items"></div>
+      <p class="text-xs text-gray-400 mb-4">⏰ 예상 조리·배달 시간: <strong class="text-gray-600">약 30분</strong></p>
+      <button onclick="closeSuccessModal()" class="w-full bg-[#FF6B00] text-white py-3 rounded-xl font-bold text-sm shadow-md hover:bg-[#e05a00]">
+        홈으로 돌아가기
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="absolute bottom-0 inset-x-0 bg-white border-t border-gray-100 flex items-center justify-around py-2.5 z-40">
+    <button onclick="changeTab('home')" id="nav-home" class="nav-btn flex flex-col items-center gap-0.5 text-[#FF6B00]">
+      <i class="fa-solid fa-house text-lg"></i>
+      <span class="text-[10px] font-bold">홈</span>
+    </button>
+    <button onclick="changeTab('menu')" id="nav-menu" class="nav-btn flex flex-col items-center gap-0.5 text-gray-400">
+      <i class="fa-solid fa-utensils text-lg"></i>
+      <span class="text-[10px] font-bold">메뉴</span>
+    </button>
+    <button onclick="changeTab('cart')" id="nav-cart" class="nav-btn flex flex-col items-center gap-0.5 text-gray-400 relative">
+      <i class="fa-solid fa-basket-shopping text-lg"></i>
+      <span class="text-[10px] font-bold">장바구니</span>
+      <span id="nav-cart-badge" class="absolute top-0 right-1.5 bg-red-500 text-white text-[8px] font-bold rounded-full w-4 h-4 items-center justify-center hidden flex">0</span>
+    </button>
+    <button onclick="changeTab('profile')" id="nav-profile" class="nav-btn flex flex-col items-center gap-0.5 text-gray-400">
+      <i class="fa-solid fa-user text-lg"></i>
+      <span class="text-[10px] font-bold">내정보</span>
+    </button>
+  </nav>
+
+</div>
 
 <script>
-// ===== MENU DATA =====
-const menuData = [
-  { id:1, name:'황금 후라이드', emoji:'🍗', price:17000, desc:'바삭한 황금빛 튀김옷, 할아버지 비법 양념', cat:'chicken', badge:'best' },
-  { id:2, name:'양념치킨', emoji:'🍖', price:18000, desc:'달콤 매콤한 특제 양념소스', cat:'chicken', badge:'best' },
-  { id:3, name:'반반치킨', emoji:'🍗', price:19000, desc:'후라이드 반 + 양념 반, 취향껏 즐기세요', cat:'chicken', badge:'' },
-  { id:4, name:'마늘간장치킨', emoji:'🧄', price:20000, desc:'고소한 마늘과 깊은 간장의 조화', cat:'chicken', badge:'new' },
-  { id:5, name:'불닭치킨', emoji:'🌶️', price:21000, desc:'매운맛 좋아하는 분들께 강추!', cat:'chicken', badge:'new' },
-  { id:6, name:'순살치킨', emoji:'🍗', price:22000, desc:'뼈 없이 편하게 즐기는 순살 치킨', cat:'chicken', badge:'' },
-  { id:7, name:'감자튀김', emoji:'🍟', price:4000, desc:'바삭하고 노릇한 황금 감자튀김', cat:'side', badge:'' },
-  { id:8, name:'코울슬로', emoji:'🥗', price:3000, desc:'신선한 야채 코울슬로', cat:'side', badge:'' },
-  { id:9, name:'떡볶이', emoji:'🍢', price:5000, desc:'매콤달콤 치킨과 찰떡궁합', cat:'side', badge:'best' },
-  { id:10, name:'콜라 1.25L', emoji:'🥤', price:3000, desc:'시원한 콜라 한 병', cat:'drink', badge:'' },
-  { id:11, name:'사이다 1.25L', emoji:'🥤', price:3000, desc:'청량한 사이다 한 병', cat:'drink', badge:'' },
-  { id:12, name:'치킨세트 A', emoji:'🎁', price:24000, desc:'후라이드 + 감자튀김 + 콜라', cat:'set', badge:'best' },
-  { id:13, name:'치킨세트 B', emoji:'🎁', price:26000, desc:'양념치킨 + 떡볶이 + 사이다', cat:'set', badge:'' },
+// ===== 메뉴 데이터 =====
+const menuItems = [
+  { id:1,  name:'황금 후라이드',    emoji:'🍗', price:17000, desc:'40년 비법 황금빛 튀김옷, 바삭함이 다릅니다',          cat:'chicken', badge:'best' },
+  { id:2,  name:'양념치킨',        emoji:'🍖', price:18000, desc:'달콤 매콤한 오리지널 양념소스',                       cat:'chicken', badge:'best' },
+  { id:3,  name:'반반치킨',        emoji:'🍗', price:19000, desc:'후라이드 반 + 양념 반, 둘 다 즐기세요',               cat:'chicken', badge:'' },
+  { id:4,  name:'마늘간장치킨',    emoji:'🧄', price:20000, desc:'고소한 마늘과 깊은 간장의 조화',                      cat:'chicken', badge:'new' },
+  { id:5,  name:'불닭치킨',        emoji:'🌶️', price:21000, desc:'청양고추로 만든 매운맛, 중독 주의!',                  cat:'chicken', badge:'new' },
+  { id:6,  name:'순살치킨',        emoji:'🍗', price:22000, desc:'뼈 없이 편하게, 온 가족이 함께',                     cat:'chicken', badge:'' },
+  { id:7,  name:'감자튀김',        emoji:'🍟', price:4000,  desc:'바삭하게 튀겨낸 황금 감자튀김',                      cat:'side',    badge:'' },
+  { id:8,  name:'코울슬로',        emoji:'🥗', price:3000,  desc:'신선한 채소 코울슬로',                               cat:'side',    badge:'' },
+  { id:9,  name:'치킨무',          emoji:'🥒', price:2000,  desc:'아삭아삭 단무지와 함께',                             cat:'side',    badge:'' },
+  { id:10, name:'떡볶이',          emoji:'🍢', price:5000,  desc:'매콤달콤 치킨과 찰떡궁합',                           cat:'side',    badge:'best' },
+  { id:11, name:'콜라 1.25L',      emoji:'🥤', price:3000,  desc:'시원한 콜라',                                       cat:'drink',   badge:'' },
+  { id:12, name:'사이다 1.25L',    emoji:'🥤', price:3000,  desc:'청량한 사이다',                                     cat:'drink',   badge:'' },
+  { id:13, name:'치킨세트 A',      emoji:'🎁', price:24000, desc:'황금후라이드 + 감자튀김 + 콜라',                     cat:'set',     badge:'best' },
+  { id:14, name:'치킨세트 B',      emoji:'🎁', price:26000, desc:'양념치킨 + 떡볶이 + 사이다',                        cat:'set',     badge:'' },
 ];
 
-let cart = {};
-let currentCategory = 'all';
-let stream = null;
+let cart = [];
+let selectedPayment = 'camera';
+let currentUser = null;
+let cameraStream = null;
 
-function renderMenu(filter='all') {
-  const grid = document.getElementById('menuGrid');
-  const filtered = filter === 'all' ? menuData : menuData.filter(m => m.cat === filter);
-  grid.innerHTML = filtered.map(item => `
-    <div class="menu-card" onclick="addToCart(${item.id})">
-      <div class="menu-card-img">${item.emoji}</div>
-      <div class="menu-card-body">
-        <div class="menu-card-name">
-          ${item.name}
-          ${item.badge === 'best' ? '<span class="badge-best">⭐BEST</span>' : ''}
-          ${item.badge === 'new' ? '<span class="badge-new">NEW</span>' : ''}
+// ===== 초기화 =====
+window.onload = function() {
+  const su = localStorage.getItem('cm_user');
+  if (su) { currentUser = JSON.parse(su); applyUserSession(); }
+  const sc = localStorage.getItem('cm_cart');
+  if (sc) { cart = JSON.parse(sc); updateCartBadge(); }
+  renderBestProducts();
+  renderAllMenuItems();
+  updateCartUI();
+};
+
+// ===== 탭 전환 =====
+function changeTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('text-[#FF6B00]'); b.classList.add('text-gray-400'); });
+  const nb = document.getElementById('nav-' + name);
+  if (nb) { nb.classList.remove('text-gray-400'); nb.classList.add('text-[#FF6B00]'); }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (name === 'cart') updateCartUI();
+}
+
+function goCategory(cat) { changeTab('menu'); filterCategory(cat); }
+function goToMenuItem(id) { changeTab('menu'); }
+
+// ===== 홈 베스트 상품 =====
+function renderBestProducts() {
+  const bests = menuItems.filter(m => m.badge === 'best').slice(0, 4);
+  document.getElementById('best-products-container').innerHTML = bests.map(item => `
+    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 p-3 flex flex-col justify-between">
+      <div>
+        <div class="bg-gray-50 rounded-xl py-4 flex justify-center text-4xl mb-2 relative">
+          ${item.emoji}
+          <span class="absolute top-1 left-1 bg-red-500 text-white font-bold text-[9px] px-1.5 py-0.5 rounded-full">BEST</span>
         </div>
-        <div class="menu-card-desc">${item.desc}</div>
-        <div class="menu-card-footer">
-          <span class="menu-price">${item.price.toLocaleString()}원</span>
-          <button class="add-btn" onclick="event.stopPropagation(); addToCart(${item.id})">+ 담기</button>
-        </div>
+        <h4 class="font-bold text-gray-800 text-xs leading-tight">${item.name}</h4>
+      </div>
+      <div class="mt-2 pt-2 border-t border-gray-50 flex items-center justify-between">
+        <span class="font-extrabold text-gray-900 text-xs">${item.price.toLocaleString()}원</span>
+        <button onclick="addToCart(${item.id})" class="bg-[#FF6B00] hover:bg-[#e05a00] text-white w-6 h-6 rounded-full flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-plus text-xs"></i>
+        </button>
       </div>
     </div>
   `).join('');
 }
 
-function filterMenu(cat, el) {
-  currentCategory = cat;
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  renderMenu(cat);
-}
-
-function addToCart(id) {
-  const item = menuData.find(m => m.id === id);
-  if (!item) return;
-  if (!cart[id]) cart[id] = { ...item, qty: 0 };
-  cart[id].qty++;
-  updateCartCount();
-  playAddSound();
-  showToast(`🍗 ${item.name} 담았어요!`);
-}
-
-function updateCartCount() {
-  const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
-  document.getElementById('cartCount').textContent = total;
-}
-
-function openCart() {
-  renderCart();
-  document.getElementById('cartOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-function renderCart() {
-  const items = Object.values(cart);
-  const container = document.getElementById('cartItems');
-  const totalEl = document.getElementById('cartTotal');
-
-  if (items.length === 0) {
-    container.innerHTML = `<div class="empty-cart">🧺 장바구니가 비어있어요<br><br>맛있는 치킨을 담아보세요!</div>`;
-    totalEl.style.display = 'none';
-    return;
-  }
-
-  container.innerHTML = items.map(i => `
-    <div class="cart-item">
-      <div class="cart-item-emoji">${i.emoji}</div>
-      <div class="cart-item-info">
-        <div class="cart-item-name">${i.name}</div>
-        <div class="cart-item-price">${(i.price * i.qty).toLocaleString()}원</div>
+// ===== 전체 메뉴 렌더링 =====
+function renderAllMenuItems() {
+  document.getElementById('menu-list-container').innerHTML = menuItems.map(item => `
+    <div class="menu-item bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex items-center gap-3" data-category="${item.cat}">
+      <div class="bg-gray-50 rounded-xl w-16 h-16 shrink-0 flex items-center justify-center text-3xl">
+        ${item.emoji}
       </div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="changeQty(${i.id}, -1)">−</button>
-        <span class="qty-num">${i.qty}</span>
-        <button class="qty-btn" onclick="changeQty(${i.id}, 1)">+</button>
+      <div class="flex-grow min-w-0">
+        <div class="flex items-center gap-1 mb-0.5">
+          ${item.badge === 'best' ? '<span class="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold">BEST</span>' : ''}
+          ${item.badge === 'new' ? '<span class="bg-blue-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold">NEW</span>' : ''}
+        </div>
+        <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
+        <p class="text-[11px] text-gray-400 line-clamp-1 mt-0.5">${item.desc}</p>
+        <span class="font-extrabold text-[#FF6B00] text-sm block mt-1">${item.price.toLocaleString()}원</span>
       </div>
+      <button onclick="addToCart(${item.id})" class="bg-gray-100 hover:bg-[#FF6B00] hover:text-white text-gray-600 p-2 rounded-xl transition-all flex flex-col items-center gap-0.5 shrink-0">
+        <i class="fa-solid fa-cart-arrow-down text-xs"></i>
+        <span class="text-[9px] font-bold">담기</span>
+      </button>
     </div>
   `).join('');
-
-  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
-  document.getElementById('totalPrice').textContent = total.toLocaleString() + '원';
-  totalEl.style.display = 'block';
-  document.getElementById('payTotalLabel').textContent = total.toLocaleString() + '원';
 }
 
-function changeQty(id, delta) {
-  if (!cart[id]) return;
-  cart[id].qty += delta;
-  if (cart[id].qty <= 0) delete cart[id];
-  updateCartCount();
-  renderCart();
-}
-
-function closeOverlay(id) {
-  document.getElementById(id).classList.remove('show');
-  document.body.style.overflow = '';
-  if (id === 'paymentOverlay') stopCamera();
-}
-
-function closeCart(e) {
-  if (e.target === e.currentTarget) {
-    e.currentTarget.classList.remove('show');
-    document.body.style.overflow = '';
-    stopCamera();
-  }
-}
-
-// ===== PAYMENT =====
-function openPayment() {
-  closeOverlay('cartOverlay');
-  const total = Object.values(cart).reduce((s, i) => s + i.price * i.qty, 0);
-  document.getElementById('payTotalLabel').textContent = total.toLocaleString() + '원';
-  resetPaymentSections();
-  document.getElementById('paymentOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-function resetPaymentSections() {
-  ['cameraSection','kakaoSection','cashSection','transferSection','processingBox'].forEach(id => {
-    const el = document.getElementById(id);
-    el.style.display = '';
-    el.classList.remove('show');
+// ===== 카테고리 필터 =====
+function filterCategory(cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => {
+    b.classList.remove('bg-[#FF6B00]', 'text-white');
+    b.classList.add('bg-gray-100', 'text-gray-600');
   });
-  document.querySelectorAll('.pay-method-btn').forEach(b => b.classList.remove('selected'));
+  const ab = document.getElementById('btn-cat-' + cat);
+  if (ab) { ab.classList.remove('bg-gray-100', 'text-gray-600'); ab.classList.add('bg-[#FF6B00]', 'text-white'); }
+  document.querySelectorAll('.menu-item').forEach(el => {
+    el.style.display = (cat === 'all' || el.dataset.category === cat) ? 'flex' : 'none';
+  });
 }
 
-function selectPay(method) {
-  resetPaymentSections();
-  stopCamera();
-
-  document.querySelectorAll('.pay-method-btn').forEach(b => b.classList.remove('selected'));
-  const btnMap = { card: 'btnCard', kakao: 'btnKakao', cash: 'btnCash', transfer: 'btnTransfer' };
-  document.getElementById(btnMap[method]).classList.add('selected');
-
-  if (method === 'card') startCamera();
-  else if (method === 'kakao') { document.getElementById('kakaoSection').style.display = 'flex'; document.getElementById('kakaoSection').classList.add('show'); }
-  else if (method === 'cash') document.getElementById('cashSection').style.display = 'block';
-  else if (method === 'transfer') document.getElementById('transferSection').style.display = 'block';
+// ===== 장바구니 =====
+function addToCart(id) {
+  const item = menuItems.find(m => m.id === id);
+  if (!item) return;
+  const ex = cart.find(c => c.id === id);
+  if (ex) ex.qty++;
+  else cart.push({ ...item, qty: 1 });
+  localStorage.setItem('cm_cart', JSON.stringify(cart));
+  updateCartBadge();
+  playAddSound();
+  showToast('🛒 ' + item.name + ' 담겼습니다!');
 }
 
-// ===== CAMERA =====
-async function startCamera() {
-  const section = document.getElementById('cameraSection');
-  section.style.display = 'flex';
-  section.classList.add('show');
-  try {
-    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-    document.getElementById('videoEl').srcObject = stream;
-  } catch(e) {
-    showToast('📷 카메라 권한이 필요합니다');
-    document.getElementById('cameraSection').innerHTML = `
-      <div style="text-align:center; padding:20px;">
-        <div style="font-size:60px;">📷</div>
-        <p style="font-size:18px; margin:12px 0;">카메라를 사용할 수 없습니다<br>다른 결제 방법을 이용해주세요</p>
-        <button class="scan-btn" onclick="confirmPayment()">카드 번호 직접 입력</button>
-      </div>
-    `;
-  }
+function updateCartBadge() {
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  ['cart-badge', 'nav-cart-badge'].forEach(id => {
+    const el = document.getElementById(id);
+    if (total > 0) { el.textContent = total; el.classList.remove('hidden'); el.classList.add('flex'); }
+    else { el.classList.add('hidden'); el.classList.remove('flex'); }
+  });
 }
 
-function stopCamera() {
-  if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+function updateCartUI() {
+  const emptyView = document.getElementById('empty-cart-view');
+  const activeView = document.getElementById('active-cart-view');
+  if (cart.length === 0) { emptyView.classList.remove('hidden'); activeView.classList.add('hidden'); return; }
+  emptyView.classList.add('hidden'); activeView.classList.remove('hidden');
+
+  let subtotal = 0;
+  document.getElementById('cart-items-container').innerHTML = cart.map((item, i) => {
+    subtotal += item.price * item.qty;
+    return `
+      <div class="py-3 flex items-center justify-between gap-3">
+        <div class="text-2xl">${item.emoji}</div>
+        <div class="flex-grow min-w-0">
+          <h4 class="font-bold text-gray-800 text-xs">${item.name}</h4>
+          <span class="font-black text-[#FF6B00] text-xs block mt-1">${(item.price * item.qty).toLocaleString()}원</span>
+        </div>
+        <div class="flex items-center border border-gray-200 rounded-lg bg-gray-50">
+          <button onclick="changeQty(${i}, -1)" class="px-2.5 py-1 text-gray-500 font-bold hover:bg-gray-100 rounded-l-lg">-</button>
+          <span class="px-3 text-xs font-bold text-gray-800">${item.qty}</span>
+          <button onclick="changeQty(${i}, 1)" class="px-2.5 py-1 text-gray-500 font-bold hover:bg-gray-100 rounded-r-lg">+</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('cart-subtotal').textContent = subtotal.toLocaleString() + '원';
+  document.getElementById('cart-total-price').textContent = subtotal.toLocaleString() + '원';
+  document.getElementById('order-btn-price').textContent = subtotal.toLocaleString() + '원';
 }
 
-function simulateScan() {
-  showToast('🔍 카드 인식 중...');
-  document.getElementById('processingBox').style.display = 'flex';
-  document.getElementById('processingBox').classList.add('show');
-  document.getElementById('processingText').textContent = '카드 정보 인식 중...';
-  stopCamera();
+function changeQty(i, delta) {
+  cart[i].qty += delta;
+  if (cart[i].qty <= 0) cart.splice(i, 1);
+  localStorage.setItem('cm_cart', JSON.stringify(cart));
+  updateCartBadge();
+  updateCartUI();
+}
+
+// ===== 결제 수단 선택 =====
+function setPayment(method) {
+  selectedPayment = method;
+  document.querySelectorAll('.pay-method-btn').forEach(b => {
+    b.classList.remove('border-2', 'border-[#FF6B00]', 'bg-orange-50', 'text-[#FF6B00]');
+    b.classList.add('border', 'border-gray-200', 'text-gray-600');
+  });
+  const ab = document.getElementById('pay-' + method);
+  if (ab) { ab.classList.remove('border', 'border-gray-200', 'text-gray-600'); ab.classList.add('border-2', 'border-[#FF6B00]', 'bg-orange-50', 'text-[#FF6B00]'); }
+}
+
+// ===== 주문 처리 =====
+function processOrder() {
+  if (cart.length === 0) { showToast('장바구니가 비어있습니다!'); return; }
+  if (selectedPayment === 'camera') openCameraModal();
+  else if (selectedPayment === 'kakao') openKakaoModal();
+  else if (selectedPayment === 'transfer') openTransferModal();
+  else if (selectedPayment === 'cash') openCashModal();
+}
+
+// ===== 카메라 결제 =====
+function openCameraModal() {
+  document.getElementById('camera-modal').classList.remove('hidden');
+  document.getElementById('camera-modal').classList.add('flex');
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    .then(s => { cameraStream = s; document.getElementById('video-el').srcObject = s; })
+    .catch(() => {
+      document.getElementById('camera-live-view').classList.add('hidden');
+      document.getElementById('camera-fallback').classList.remove('hidden');
+    });
+}
+function closeCameraModal() {
+  document.getElementById('camera-modal').classList.add('hidden');
+  document.getElementById('camera-modal').classList.remove('flex');
+  if (cameraStream) { cameraStream.getTracks().forEach(t => t.stop()); cameraStream = null; }
+  document.getElementById('camera-processing').classList.add('hidden');
+  document.getElementById('camera-processing').classList.remove('flex');
+  document.getElementById('scan-btn').classList.remove('hidden');
+}
+function startScan() {
+  document.getElementById('scan-btn').classList.add('hidden');
+  document.getElementById('camera-processing').classList.remove('hidden');
+  document.getElementById('camera-processing').classList.add('flex');
+  document.getElementById('camera-processing-text').textContent = '카드 인식 중...';
   setTimeout(() => {
-    document.getElementById('processingText').textContent = '결제 처리 중...';
-    setTimeout(() => confirmPayment(), 1500);
+    document.getElementById('camera-processing-text').textContent = '결제 처리 중...';
+    setTimeout(() => { closeCameraModal(); confirmPayment('카드 스캔'); }, 1500);
   }, 1500);
 }
 
+// ===== 카카오페이 =====
+function openKakaoModal() {
+  document.getElementById('kakao-modal').classList.remove('hidden');
+  document.getElementById('kakao-modal').classList.add('flex');
+}
+function closeKakaoModal() {
+  document.getElementById('kakao-modal').classList.add('hidden');
+  document.getElementById('kakao-modal').classList.remove('flex');
+  document.getElementById('kakao-processing').classList.add('hidden');
+  document.getElementById('kakao-processing').classList.remove('flex');
+}
 function simulateKakaoPay() {
-  document.getElementById('kakaoSection').style.display = 'none';
-  document.getElementById('processingBox').style.display = 'flex';
-  document.getElementById('processingBox').classList.add('show');
-  document.getElementById('processingText').textContent = '카카오페이 결제 처리 중...';
-  setTimeout(() => confirmPayment(), 2000);
+  document.getElementById('kakao-processing').classList.remove('hidden');
+  document.getElementById('kakao-processing').classList.add('flex');
+  setTimeout(() => { closeKakaoModal(); confirmPayment('카카오페이'); }, 2000);
 }
 
-function confirmPayment() {
-  document.getElementById('processingBox').style.display = 'flex';
-  document.getElementById('processingBox').classList.add('show');
-  document.getElementById('processingText').textContent = '결제 완료 처리 중...';
-  setTimeout(() => showSuccess(), 1500);
+// ===== 계좌이체 =====
+function openTransferModal() {
+  document.getElementById('transfer-modal').classList.remove('hidden');
+  document.getElementById('transfer-modal').classList.add('flex');
+}
+function closeTransferModal() {
+  document.getElementById('transfer-modal').classList.add('hidden');
+  document.getElementById('transfer-modal').classList.remove('flex');
 }
 
-// ===== SUCCESS =====
-function showSuccess() {
-  stopCamera();
-  closeOverlay('paymentOverlay');
+// ===== 현금 =====
+function openCashModal() {
+  document.getElementById('cash-modal').classList.remove('hidden');
+  document.getElementById('cash-modal').classList.add('flex');
+}
+function closeCashModal() {
+  document.getElementById('cash-modal').classList.add('hidden');
+  document.getElementById('cash-modal').classList.remove('flex');
+}
 
-  const orderNum = '#' + String(Math.floor(1000 + Math.random() * 9000));
-  document.getElementById('orderNumber').textContent = orderNum;
-
-  const items = Object.values(cart);
-  document.getElementById('orderSummaryItems').innerHTML = items.map(i => `
-    <div class="order-item-row">
+// ===== 결제 완료 =====
+function confirmPayment(method) {
+  closeTransferModal(); closeCashModal();
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const orderNo = '#' + String(Math.floor(1000 + Math.random() * 9000));
+  document.getElementById('modal-order-no').textContent = orderNo;
+  document.getElementById('modal-payment-method').textContent = method;
+  document.getElementById('modal-price').textContent = total.toLocaleString() + '원';
+  document.getElementById('modal-items').innerHTML = cart.map(i =>
+    `<div class="flex justify-between text-xs text-gray-700 py-1 border-b border-gray-100">
       <span>${i.emoji} ${i.name} × ${i.qty}</span>
       <span>${(i.price * i.qty).toLocaleString()}원</span>
-    </div>
-  `).join('');
-
-  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
-  document.getElementById('orderSummaryTotal').textContent = total.toLocaleString() + '원';
-
-  document.getElementById('successOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
-
+    </div>`
+  ).join('');
+  document.getElementById('success-modal').classList.remove('hidden');
+  document.getElementById('success-modal').classList.add('flex');
   playOrderSound();
 }
 
-function closeSuccess() {
-  document.getElementById('successOverlay').classList.remove('show');
-  document.body.style.overflow = '';
-  cart = {};
-  updateCartCount();
+function closeSuccessModal() {
+  document.getElementById('success-modal').classList.add('hidden');
+  document.getElementById('success-modal').classList.remove('flex');
+  cart = [];
+  localStorage.removeItem('cm_cart');
+  updateCartBadge();
+  changeTab('home');
 }
 
-// ===== SOUND EFFECTS =====
-const AudioCtx = window.AudioContext || window.webkitAudioContext;
+// ===== 회원 =====
+function registerUser() {
+  const name = document.getElementById('reg-name').value.trim();
+  const phone = document.getElementById('reg-phone').value.trim();
+  const address = document.getElementById('reg-address').value.trim();
+  if (!name || !phone || !address) { showToast('⚠️ 필수 항목을 모두 입력해주세요.'); return; }
+  currentUser = { name, phone, address };
+  localStorage.setItem('cm_user', JSON.stringify(currentUser));
+  applyUserSession();
+  showToast('🎉 가입을 환영합니다!');
+  changeTab('home');
+}
+function applyUserSession() {
+  if (!currentUser) return;
+  document.getElementById('profile-name').textContent = currentUser.name;
+  document.getElementById('profile-phone-display').textContent = currentUser.phone;
+  document.getElementById('profile-address-display').textContent = currentUser.address;
+  document.getElementById('unauth-view').classList.add('hidden');
+  document.getElementById('auth-view').classList.remove('hidden');
+}
+function logoutUser() {
+  currentUser = null;
+  localStorage.removeItem('cm_user');
+  ['reg-name','reg-phone','reg-address'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('unauth-view').classList.remove('hidden');
+  document.getElementById('auth-view').classList.add('hidden');
+  showToast('로그아웃 되었습니다.');
+}
+
+// ===== 토스트 =====
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast-message');
+  document.getElementById('toast-text').textContent = msg;
+  el.style.opacity = '1';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { el.style.opacity = '0'; }, 2200);
+}
+
+// ===== 효과음 =====
 let audioCtx;
-
-function getAudioCtx() {
-  if (!audioCtx) audioCtx = new AudioCtx();
-  return audioCtx;
-}
+function getCtx() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
 
 function playAddSound() {
   try {
-    const ctx = getAudioCtx();
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
+    const ctx = getCtx();
+    const o = ctx.createOscillator(), g = ctx.createGain();
     o.connect(g); g.connect(ctx.destination);
-    o.frequency.setValueAtTime(800, ctx.currentTime);
-    o.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
-    g.gain.setValueAtTime(0.3, ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+    o.frequency.setValueAtTime(880, ctx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.1);
+    g.gain.setValueAtTime(0.2, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
     o.start(); o.stop(ctx.currentTime + 0.2);
   } catch(e) {}
 }
 
 function playOrderSound() {
   try {
-    const ctx = getAudioCtx();
-    // 치킨의 민족 주문! - 팡파레 멜로디
-    const melody = [
-      [523, 0, 0.15],   // C
-      [659, 0.15, 0.15],// E
-      [784, 0.3, 0.15], // G
-      [1047, 0.45, 0.3],// C high
-      [880, 0.75, 0.15],// A
-      [1047, 0.9, 0.4], // C high long
-    ];
-    melody.forEach(([freq, start, dur]) => {
-      const o = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.connect(g); g.connect(ctx.destination);
-      o.type = 'square';
-      o.frequency.value = freq;
-      g.gain.setValueAtTime(0, ctx.currentTime + start);
-      g.gain.linearRampToValueAtTime(0.25, ctx.currentTime + start + 0.02);
-      g.gain.setValueAtTime(0.25, ctx.currentTime + start + dur - 0.05);
-      g.gain.linearRampToValueAtTime(0, ctx.currentTime + start + dur);
-      o.start(ctx.currentTime + start);
-      o.stop(ctx.currentTime + start + dur + 0.05);
+    const ctx = getCtx();
+    // 치킨의 민족 주문! 팡파레
+    [[523,0,.15],[659,.15,.15],[784,.3,.15],[1047,.45,.35],[880,.8,.15],[1047,.95,.5]].forEach(([f,s,d]) => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'square'; o.connect(g); g.connect(ctx.destination);
+      o.frequency.value = f;
+      g.gain.setValueAtTime(0, ctx.currentTime + s);
+      g.gain.linearRampToValueAtTime(0.2, ctx.currentTime + s + 0.02);
+      g.gain.setValueAtTime(0.2, ctx.currentTime + s + d - 0.04);
+      g.gain.linearRampToValueAtTime(0, ctx.currentTime + s + d);
+      o.start(ctx.currentTime + s); o.stop(ctx.currentTime + s + d + 0.05);
     });
-
-    // 드럼 비트
-    for (let i = 0; i < 4; i++) {
-      const buf = ctx.createBuffer(1, ctx.sampleRate * 0.1, ctx.sampleRate);
-      const data = buf.getChannelData(0);
-      for (let j = 0; j < data.length; j++) data[j] = (Math.random() * 2 - 1) * Math.exp(-j / (ctx.sampleRate * 0.02));
-      const src = ctx.createBufferSource();
-      src.buffer = buf;
-      const g = ctx.createGain();
-      g.gain.value = 0.3;
-      src.connect(g); g.connect(ctx.destination);
-      src.start(ctx.currentTime + i * 0.33);
-    }
   } catch(e) {}
 }
-
-// ===== TOAST =====
-let toastTimer;
-function showToast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
-}
-
-// ===== INIT =====
-renderMenu();
 </script>
 </body>
 </html>
